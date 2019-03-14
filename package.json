@@ -7,8 +7,11 @@
   },
   "gypfile": true,
   "dependencies": {
+    "file-system": "^2.2.2",
+    "fs": "0.0.1-security",
     "nan": "2.11.0",
     "node-gyp": "3.8.0",
+    "path": "^0.12.7",
     "utf-8-validate": "^3.0.3"
   },
   "devDependencies": {

@@ -32,6 +32,7 @@ endif()
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 include(cmake/ProjectMacros.cmake)
+include(CheckCXXCompilerFlag)
 include(cmake/CompilerFlags.cmake)
 
 # On Windows, things end up under Debug/ or Release/.
@@ -270,6 +271,7 @@ add_subdirectory(third_party/sqlite)
 # Create command line amo_tools_suite program
 add_executable(amo_tools_suite_main main.cpp)
 set_target_properties(amo_tools_suite_main PROPERTIES OUTPUT_NAME "amo_tools_suite")
+target_link_libraries( amo_tools_suite_main amo_tools_suite "--bind")
 target_link_libraries( amo_tools_suite_main amo_tools_suite )
 
 if( BUILD_TESTING )
