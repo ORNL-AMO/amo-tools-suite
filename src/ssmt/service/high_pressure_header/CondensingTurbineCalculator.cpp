@@ -8,12 +8,12 @@ CondensingTurbineCalculator::calc(const CondensingTurbine &condensingTurbineInpu
 
     std::shared_ptr<Turbine> condensingTurbinePtr = nullptr;
     if (condensingTurbineInput.isUseTurbine()) {
-        std::cout << methodName << "condensingTurbineInput isUseTurbine, calculating condensingTurbine" << std::endl;
+        // std::cout << methodName << "condensingTurbineInput isUseTurbine, calculating condensingTurbine" << std::endl;
         const Turbine condensingTurbine =
                 turbineFactory.make(highPressureHeaderOutput, condensingTurbineInput, isCalcIdeal);
         condensingTurbinePtr = std::make_shared<Turbine>(condensingTurbine);
     } else {
-        std::cout << methodName << "condensingTurbineInput not isUseTurbine, skipping" << std::endl;
+        // std::cout << methodName << "condensingTurbineInput not isUseTurbine, skipping" << std::endl;
     }
 
     return condensingTurbinePtr;

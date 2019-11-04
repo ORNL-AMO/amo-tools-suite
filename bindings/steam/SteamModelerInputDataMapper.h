@@ -28,7 +28,7 @@ public:
             const std::string what = e.what();
             const std::string failMsg = "ERROR mapping SteamModeler input: " + what;
 
-            std::cout << methodName << failMsg << std::endl;
+            // std::cout << methodName << failMsg << std::endl;
 
             Local <String> failMsgLocal = Nan::New<String>(failMsg).ToLocalChecked();
             ThrowError(failMsgLocal);
@@ -37,19 +37,19 @@ public:
 
 private:
     void logSection(const std::string &message) const {
-        std::cout << "======== " << std::endl;
-        std::cout << "======== " << message << std::endl;
-        std::cout << "======== " << std::endl;
+        // std::cout << "======== " << std::endl;
+        // std::cout << "======== " << message << std::endl;
+        // std::cout << "======== " << std::endl;
     }
 
     bool mapInputToBaselineCalc() {
         const std::string methodName = std::string("SteamModelerInputDataMapper::") + std::string(__func__) + ": ";
 
-        std::cout << methodName << "begin" << std::endl;
+        // std::cout << methodName << "begin" << std::endl;
 
         const bool isBaselineCalc = getBoolFromString("isBaselineCalc");
 
-        std::cout << methodName << "end: isBaselineCalc=" << isBaselineCalc << std::endl;
+        // std::cout << methodName << "end: isBaselineCalc=" << isBaselineCalc << std::endl;
 
         return isBaselineCalc;
     }
@@ -57,16 +57,16 @@ private:
     double mapInputToBaselinePowerDemand() {
         const std::string methodName = std::string("SteamModelerInputDataMapper::") + std::string(__func__) + ": ";
 
-        std::cout << methodName << "begin" << std::endl;
+        // std::cout << methodName << "begin" << std::endl;
 
         const double baselinePowerDemand = getDouble("baselinePowerDemand");
 
-        std::cout << methodName << "end: baselinePowerDemand=" << baselinePowerDemand << std::endl;
+        // std::cout << methodName << "end: baselinePowerDemand=" << baselinePowerDemand << std::endl;
 
         //check for NaN (if true, doesn't equal itself)
         if (baselinePowerDemand != baselinePowerDemand) {
             std::string msg = methodName + "baselinePowerDemand is not specified, aborting";
-            std::cout << msg << std::endl;
+            // std::cout << msg << std::endl;
             throw std::invalid_argument(msg);
         }
 
@@ -76,7 +76,7 @@ private:
     const BoilerInput mapInputToBoilerInput() {
         const std::string methodName = std::string("SteamModelerInputDataMapper::") + std::string(__func__) + ": ";
 
-        std::cout << methodName << "begin" << std::endl;
+        // std::cout << methodName << "begin" << std::endl;
 
         Local <Object> boilerInputObject = getObject("boilerInput");
 
@@ -95,7 +95,7 @@ private:
                 {fuelType, fuel, combustionEfficiency, blowdownRate, blowdownFlashed, preheatMakeupWater,
                  steamTemperature, deaeratorVentRate, deaeratorPressure, approachTemperature};
 
-        std::cout << methodName << "end: boilerInput=" << boilerInput << std::endl;
+        // std::cout << methodName << "end: boilerInput=" << boilerInput << std::endl;
 
         return boilerInput;
     }
@@ -103,7 +103,7 @@ private:
     const HeaderInput mapInputToHeaderInput() {
         const std::string methodName = std::string("SteamModelerInputDataMapper::") + std::string(__func__) + ": ";
 
-        std::cout << methodName << "begin" << std::endl;
+        // std::cout << methodName << "begin" << std::endl;
 
         Local <Object> headerInputObject = getObject("headerInput");
 
@@ -119,7 +119,7 @@ private:
 
         const HeaderInput &headerInput = {highPressure, mediumPressure, lowPressure};
 
-        std::cout << methodName << "end: headerInput=" << headerInput << std::endl;
+        // std::cout << methodName << "end: headerInput=" << headerInput << std::endl;
 
         return headerInput;
     }
@@ -127,7 +127,7 @@ private:
     const OperationsInput mapInputToOperationsInput() {
         const std::string methodName = std::string("SteamModelerInputDataMapper::") + std::string(__func__) + ": ";
 
-        std::cout << methodName << "begin" << std::endl;
+        // std::cout << methodName << "begin" << std::endl;
 
         Local <Object> operationsInputObject = getObject("operationsInput");
 
@@ -142,7 +142,7 @@ private:
                 {sitePowerImport, makeUpWaterTemperature, operatingHoursPerYear, fuelCosts, electricityCosts,
                  makeUpWaterCosts};
 
-        std::cout << methodName << "end: operationsInput=" << operationsInput << std::endl;
+        // std::cout << methodName << "end: operationsInput=" << operationsInput << std::endl;
 
         return operationsInput;
     }
@@ -150,7 +150,7 @@ private:
     const TurbineInput mapInputToTurbineInput() {
         const std::string methodName = std::string("SteamModelerInputDataMapper::") + std::string(__func__) + ": ";
 
-        std::cout << methodName << "begin" << std::endl;
+        // std::cout << methodName << "begin" << std::endl;
 
         Local <Object> turbineInputObject = getObject("turbineInput");
         Local <Object> highToLowTurbineObject = getObject("highToLowTurbine", turbineInputObject);
@@ -167,7 +167,7 @@ private:
 
         const TurbineInput &turbineInput =
                 {condensingTurbine, highToLowTurbine, highToMediumTurbine, mediumToLowTurbine};
-        std::cout << methodName << "end" << std::endl;
+        // std::cout << methodName << "end" << std::endl;
 
         return turbineInput;
     }
@@ -175,7 +175,7 @@ private:
     HeaderWithHighestPressure mapInputToHeaderWithHighestPressure(Local <Object> headerObject) {
         const std::string methodName = std::string("SteamModelerInputDataMapper::") + std::string(__func__) + ": ";
 
-        std::cout << methodName << "begin" << std::endl;
+        // std::cout << methodName << "begin" << std::endl;
 
         double pressure = getDouble("pressure", headerObject);
         double processSteamUsage = getDouble("processSteamUsage", headerObject);
@@ -189,7 +189,7 @@ private:
                 {pressure, processSteamUsage, condensationRecoveryRate, heatLoss, condensateReturnTemperature,
                  flashCondensateReturn};
 
-        std::cout << methodName << "end: header=" << header << std::endl;
+        // std::cout << methodName << "end: header=" << header << std::endl;
 
         return header;
     }
@@ -200,7 +200,7 @@ private:
 
         std::shared_ptr<HeaderNotHighestPressure> header = nullptr;
 
-        std::cout << methodName << "begin: objectName=" << objectName << std::endl;
+        // std::cout << methodName << "begin: objectName=" << objectName << std::endl;
 
         if (isHeaderSpecified(headerObject)) {
             double pressure = getDouble("pressure", headerObject);
@@ -218,10 +218,10 @@ private:
                                                                heatLoss, flashCondensateIntoHeader,
                                                                desuperheatSteamIntoNextHighest,
                                                                desuperheatSteamTemperature);
-            std::cout << methodName << "end: header=" << *header << std::endl;
+            // std::cout << methodName << "end: header=" << *header << std::endl;
         } else {
             auto msg = std::string(methodName + "end: headerObject does not exist for " + objectName + ", skipping it");
-            std::cout << msg << std::endl;
+            // std::cout << msg << std::endl;
         }
 
         return header;
@@ -244,7 +244,7 @@ private:
     CondensingTurbine mapInputToTurbineCondensingTurbine(Local <Object> turbineInputObject) {
         const std::string methodName = std::string("SteamModelerInputDataMapper::") + std::string(__func__) + ": ";
 
-        std::cout << methodName << "begin" << std::endl;
+        // std::cout << methodName << "begin" << std::endl;
 
         Local <Object> condensingTurbineObject = getObject("condensingTurbine", turbineInputObject);
 
@@ -260,7 +260,7 @@ private:
                 {isentropicEfficiency, generationEfficiency, condenserPressure, operationType, operationValue,
                  useTurbine};
 
-        std::cout << methodName << "end: condensingTurbine=" << condensingTurbine << std::endl;
+        // std::cout << methodName << "end: condensingTurbine=" << condensingTurbine << std::endl;
 
         return condensingTurbine;
     }
@@ -269,7 +269,7 @@ private:
     mapInputToTurbinePressureTurbine(Local <Object> pressureTurbineObject, const std::string &objectName) {
         const std::string methodName = std::string("SteamModelerInputDataMapper::") + std::string(__func__) + ": ";
 
-        std::cout << methodName << "begin: objectName=" << objectName << std::endl;
+        // std::cout << methodName << "begin: objectName=" << objectName << std::endl;
 
         double isentropicEfficiency = getDouble("isentropicEfficiency", pressureTurbineObject);
         double generationEfficiency = getDouble("generationEfficiency", pressureTurbineObject);
@@ -283,7 +283,7 @@ private:
                 {isentropicEfficiency, generationEfficiency, operationType, operationValue1, operationValue2,
                  useTurbine};
 
-        std::cout << methodName << "end: object " << objectName << "=" << pressureTurbine << std::endl;
+        // std::cout << methodName << "end: object " << objectName << "=" << pressureTurbine << std::endl;
 
         return pressureTurbine;
     }

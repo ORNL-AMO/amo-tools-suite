@@ -10,7 +10,7 @@ ProcessSteamUsageModeler::model(const double headerCountInput, const HeaderWithH
                                 const std::shared_ptr<LowPressureHeaderCalculationsDomain> &lowPressureHeaderCalculationsDomain) const {
     const std::string methodName = std::string("ProcessSteamUsageModeler::") + std::string(__func__) + ": ";
 
-    std::cout << methodName << "calculating highPressureProcessSteamUsage" << std::endl;
+//     std::cout << methodName << "calculating highPressureProcessSteamUsage" << std::endl;
     //8. calculate process steam usage
     //8a. calculate high pressure process steam usage
     const ProcessSteamUsage &highPressureProcessSteamUsage =
@@ -20,7 +20,7 @@ ProcessSteamUsageModeler::model(const double headerCountInput, const HeaderWithH
     std::shared_ptr<ProcessSteamUsage> mediumPressureProcessUsagePtr = nullptr;
 
     if (headerCountInput > 1) {
-        std::cout << methodName << "lowPressureHeader exists, calculating lowPressureProcessUsage" << std::endl;
+        // std::cout << methodName << "lowPressureHeader exists, calculating lowPressureProcessUsage" << std::endl;
         //8b. calculate low pressure process steam usage
         const SteamSystemModelerTool::FluidProperties &lowPressureHeaderOutput =
                 lowPressureHeaderCalculationsDomain->lowPressureHeaderOutput;
@@ -33,7 +33,7 @@ ProcessSteamUsageModeler::model(const double headerCountInput, const HeaderWithH
     }
 
     if (headerCountInput == 3) {
-        std::cout << methodName << "mediumPressureHeader exists, calculating mediumPressureProcessUsage" << std::endl;
+        // std::cout << methodName << "mediumPressureHeader exists, calculating mediumPressureProcessUsage" << std::endl;
         //8c. calculate medium pressure process steam usage
         const SteamSystemModelerTool::FluidProperties &mediumPressureHeaderOutput =
                 mediumPressureHeaderCalculationsDomain->mediumPressureHeaderOutput;

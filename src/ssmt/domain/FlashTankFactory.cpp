@@ -12,7 +12,7 @@ FlashTankFactory::make(const HeaderInput &headerInput, const BoilerInput &boiler
         const FlashTank &flashTank = make(pressure, boiler);
         flashTankPtr = std::make_shared<FlashTank>(flashTank);
     } else {
-        std::cout << methodName << "boilerInput.isBlowdownFlashed() is false, skipping flash tank creation" << std::endl;
+        // std::cout << methodName << "boilerInput.isBlowdownFlashed() is false, skipping flash tank creation" << std::endl;
     }
 
     return flashTankPtr;

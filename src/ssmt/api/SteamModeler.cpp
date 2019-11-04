@@ -28,7 +28,7 @@ SteamModeler::model(const bool isBaselineCalc, const double baselinePowerDemand,
     const SteamModelerOutput &steamModelerOutput = makeOutput(steamModelCalculationsDomain);
     logSection(methodName + "populating output from calculations results: end");
 
-    std::cout << methodName + "steamModelerOutput=" << steamModelerOutput << std::endl;
+    // std::cout << methodName + "steamModelerOutput=" << steamModelerOutput << std::endl;
 
     return steamModelerOutput;
 }
@@ -39,14 +39,14 @@ SteamModeler::logInputData(const bool isBaselineCalc, const double baselinePower
                            const OperationsInput &operationsInput) {
     logSection("SteamModeler::logInputData:");
 
-    std::cout
-            << "isBaselineCalc=" << isBaselineCalc
-            << ", baselinePowerDemand=" << baselinePowerDemand
-            << ", headerInput=" << headerInput
-            << ", boilerInput=" << boilerInput
-            << ", turbineInput=" << turbineInput
-            << ", operationsInput=" << operationsInput
-            << std::endl;
+    // std::cout
+            // << "isBaselineCalc=" << isBaselineCalc
+            // << ", baselinePowerDemand=" << baselinePowerDemand
+            // << ", headerInput=" << headerInput
+            // << ", boilerInput=" << boilerInput
+            // << ", turbineInput=" << turbineInput
+            // << ", operationsInput=" << operationsInput
+            // << std::endl;
 }
 
 SteamModelCalculationsDomain
@@ -72,14 +72,14 @@ SteamModelerOutput SteamModeler::makeOutput(const SteamModelCalculationsDomain &
 }
 
 void SteamModeler::logSection(const std::string &message) const {
-    std::cout << "======== " << std::endl;
-    std::cout << "======== " << message << std::endl;
-    std::cout << "======== " << std::endl;
+    // std::cout << "======== " << std::endl;
+    // std::cout << "======== " << message << std::endl;
+    // std::cout << "======== " << std::endl;
 }
 
 void SteamModeler::logException(const std::exception &e, const std::string &message) const {
-    std::cout << "================================ " << std::endl;
-    std::cout << message << std::endl;
-    std::cout << e.what() << std::endl;
-    std::cout << "================================ " << std::endl;
+    // std::cout << "================================ " << std::endl;
+    // std::cout << message << std::endl;
+    // std::cout << e.what() << std::endl;
+    // std::cout << "================================ " << std::endl;
 }

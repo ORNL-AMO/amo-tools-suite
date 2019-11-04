@@ -18,7 +18,7 @@ std::ostream &operator<<(std::ostream &stream, const CondensingTurbineOperation 
             break;
         default:
             std::string msg = "CondensingTurbineOperation::operator<<: operator enum not handled";
-            std::cout << msg << std::endl;
+            // std::cout << msg << std::endl;
             throw std::invalid_argument(msg);
     }
 
@@ -56,7 +56,7 @@ std::ostream &operator<<(std::ostream &stream, const PressureTurbineOperation &o
             break;
         default:
             std::string msg = "CondensingTurbineOperation::operator<<: operator enum not handled";
-            std::cout << msg << std::endl;
+            // std::cout << msg << std::endl;
             throw std::invalid_argument(msg);
     }
 

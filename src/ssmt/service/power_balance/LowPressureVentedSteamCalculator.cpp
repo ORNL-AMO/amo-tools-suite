@@ -19,7 +19,7 @@ LowPressureVentedSteamCalculator::calc(const int headerCountInput,
     //TODO check requ'd things?? or push to called methods?
     if (lowPressureHeaderCalculationsDomain == nullptr) {
         std::string msg = methodName + "lowPressureHeaderCalculationsDomain is null";
-        std::cout << msg << std::endl;
+        // std::cout << msg << std::endl;
         throw std::invalid_argument(msg);
     }
 
@@ -36,7 +36,7 @@ LowPressureVentedSteamCalculator::calc(const int headerCountInput,
             makeupWaterAndCondensateHeaderCalculationsDomain.returnCondensateCalculationsDomain.returnCondensateFlashed;
 
     if (recalcMakeupWaterAndMassFlow) {
-        std::cout << methodName << "recalculating makeupWater" << std::endl;
+        // std::cout << methodName << "recalculating makeupWater" << std::endl;
         makeupWaterUpdated =
                 makeupWaterMassFlowCalculator.calc(headerCountInput, highPressureHeaderInput, mediumPressureHeaderInput,
                                                    lowPressureHeaderInput, condensingTurbineInput, boilerInput, boiler,
@@ -47,41 +47,41 @@ LowPressureVentedSteamCalculator::calc(const int headerCountInput,
         //prior step used the lowPressureVentedSteam, so pass 0 for it
         makeupWaterUpdated = fluidPropertiesFactory.makeWithVentedSteamAmount(makeupWaterUpdated, 0);
     } else {
-        std::cout << methodName << "updating makeupWater with new lowPressureVentedSteam" << std::endl;
+        // std::cout << methodName << "updating makeupWater with new lowPressureVentedSteam" << std::endl;
         makeupWaterUpdated =
                 fluidPropertiesFactory.makeWithVentedSteamAmount(makeupWaterUpdated, lowPressureVentedSteam);
     }
-    std::cout << methodName << "makeupWaterUpdated=" << makeupWaterUpdated << std::endl;
+//     std::cout << methodName << "makeupWaterUpdated=" << makeupWaterUpdated << std::endl;
 
     makeupWaterAndCondensateHeaderCalculationsDomain.makeupWater = makeupWaterUpdated;
 
     const MakeupWaterVolumeFlowCalculationsDomain &makeupWaterVolumeFlowCalculationsDomain =
             makeupWaterVolumeFlowCalculator.calc(makeupWaterUpdated, operationsInput);
-    std::cout << methodName << "makeupWaterVolumeFlowCalculationsDomain=" << makeupWaterVolumeFlowCalculationsDomain
-              << std::endl;
+//     std::cout << methodName << "makeupWaterVolumeFlowCalculationsDomain=" << makeupWaterVolumeFlowCalculationsDomain
+        //       << std::endl;
     makeupWaterAndCondensateHeaderCalculationsDomain.makeupWaterVolumeFlowCalculationsDomain =
             makeupWaterVolumeFlowCalculationsDomain;
 
     //5G. Calculate makeup water and condensate combined
-    std::cout << methodName << "calculating makeupWaterAndCondensateHeaderOutput" << std::endl;
+//     std::cout << methodName << "calculating makeupWaterAndCondensateHeaderOutput" << std::endl;
     const std::shared_ptr<HeatExchanger::Output> &heatExchangerOutput =
             makeupWaterAndCondensateHeaderCalculationsDomain.heatExchangerOutput;
     const SteamSystemModelerTool::FluidProperties &makeupWaterAndCondensateHeaderOutputUpdated =
             makeupWaterAndCondensateHeaderCalculator.calc(boilerInput, condensingTurbineInput, returnCondensate,
                                                           heatExchangerOutput, makeupWaterUpdated,
                                                           highPressureHeaderCalculationsDomain);
-    std::cout << methodName << "makeupWaterAndCondensateHeaderOutputUpdated="
-              << makeupWaterAndCondensateHeaderOutputUpdated << std::endl;
+//     std::cout << methodName << "makeupWaterAndCondensateHeaderOutputUpdated="
+             // << makeupWaterAndCondensateHeaderOutputUpdated << std::endl;
     makeupWaterAndCondensateHeaderCalculationsDomain.makeupWaterAndCondensateHeaderOutput =
             makeupWaterAndCondensateHeaderOutputUpdated;
 
     //6. Calculate Deaerator
-    std::cout << methodName << "running deaeratorModeler" << std::endl;
+//     std::cout << methodName << "running deaeratorModeler" << std::endl;
     const Deaerator &deaerator =
             deaeratorModeler.model(headerCountInput, boilerInput, boiler, highPressureHeaderCalculationsDomain,
                                    mediumPressureHeaderCalculationsDomain, lowPressureHeaderCalculationsDomain,
                                    makeupWaterAndCondensateHeaderCalculationsDomain);
-    std::cout << methodName << "deaerator=" << deaerator << std::endl;
+//     std::cout << methodName << "deaerator=" << deaerator << std::endl;
 
     return {lowPressureVentedSteam, makeupWaterUpdated, makeupWaterAndCondensateHeaderOutputUpdated,
             makeupWaterVolumeFlowCalculationsDomain, deaerator};
@@ -98,11 +98,11 @@ LowPressureVentedSteamCalculator::calcLowPressureVentedSteam(
     const double lowPressureVentedSteam =
             lowPressureHeaderOutput.massFlow - (lowPressureProcessSteamUsage + deaeratorInletSteamMassFlow);
 
-    std::cout << methodName
-              << "lowPressureHeaderOutput.massFlow=" << lowPressureHeaderOutput.massFlow
-              << " - (lowPressureProcessSteamUsage=" << lowPressureProcessSteamUsage
-              << " + deaeratorInletSteamMassFlow=" << deaeratorInletSteamMassFlow
-              << "); resulting lowPressureVentedSteam=" << lowPressureVentedSteam << std::endl;
+//     std::cout << methodName
+        //       << "lowPressureHeaderOutput.massFlow=" << lowPressureHeaderOutput.massFlow
+        //       << " - (lowPressureProcessSteamUsage=" << lowPressureProcessSteamUsage
+        //       << " + deaeratorInletSteamMassFlow=" << deaeratorInletSteamMassFlow
+        //       << "); resulting lowPressureVentedSteam=" << lowPressureVentedSteam << std::endl;
 
     return lowPressureVentedSteam;
 }

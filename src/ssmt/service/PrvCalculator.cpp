@@ -68,11 +68,11 @@ PrvCalculator::getTurbineMassFlow(const std::shared_ptr<Turbine> &turbine, const
     double massFlow = 0;
 
     if (turbine == nullptr) {
-        std::cout << "PrvCalculator::getTurbineMassFlow:"
-                  << " ERROR: Turbine instance '"
-                  << turbineName
-                  << "' expected to exist but was null/not existing; using 0"
-                  << std::endl;
+        // std::cout << "PrvCalculator::getTurbineMassFlow:"
+        //           << " ERROR: Turbine instance '"
+        //           << turbineName
+        //           << "' expected to exist but was null/not existing; using 0"
+        //           << std::endl;
     } else {
         massFlow = turbine->getMassFlow();
     }

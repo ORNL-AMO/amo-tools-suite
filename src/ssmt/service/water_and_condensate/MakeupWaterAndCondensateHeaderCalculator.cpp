@@ -35,11 +35,11 @@ MakeupWaterAndCondensateHeaderCalculator::makeHeaderResult(const BoilerInput &bo
     const Header &makeupWaterAndCondensateHeader =
             headerFactory.make(boilerDeaeratorPressure, returnCondensate, boilerInput, heatExchangerOutput,
                                makeupWaterAndMassFlow, condensingTurbineInput, condensingTurbine);
-    std::cout << methodName << "makeupWaterAndCondensateHeader=" << makeupWaterAndCondensateHeader << std::endl;
+//     std::cout << methodName << "makeupWaterAndCondensateHeader=" << makeupWaterAndCondensateHeader << std::endl;
 
     const SteamSystemModelerTool::FluidProperties &fluidProperties =
             fluidPropertiesFactory.make(makeupWaterAndCondensateHeader);
-    std::cout << methodName << "makeupWaterAndCondensateHeader as FluidProperties=" << fluidProperties << std::endl;
+//     std::cout << methodName << "makeupWaterAndCondensateHeader as FluidProperties=" << fluidProperties << std::endl;
 
     return fluidProperties;
 }
@@ -54,9 +54,9 @@ SteamSystemModelerTool::SteamPropertiesOutput MakeupWaterAndCondensateHeaderCalc
 
     SteamProperties steamProperties = {pressure, SteamProperties::ThermodynamicQuantity::ENTHALPY, specificEnthalpy};
     const SteamSystemModelerTool::SteamPropertiesOutput &steamPropertiesOutput = steamProperties.calculate();
-    std::cout << methodName << "pressure=" << pressure << ", specificEnthalpy=" << specificEnthalpy
-              << ", ThermodynamicQuantity=ENTHALPY" << "; result steamPropertiesOutput=" << steamPropertiesOutput
-              << std::endl;
+//     std::cout << methodName << "pressure=" << pressure << ", specificEnthalpy=" << specificEnthalpy
+//               << ", ThermodynamicQuantity=ENTHALPY" << "; result steamPropertiesOutput=" << steamPropertiesOutput
+//               << std::endl;
 
     return steamPropertiesOutput;
 }

@@ -7,7 +7,7 @@ HighPressureHeaderCalculator::calc(const HeaderWithHighestPressure &highPressure
 
     const double headerPressure = highPressureHeaderInput.getPressure();
     Header highPressureHeader = headerFactory.make(headerPressure, boiler);
-    std::cout << methodName << "highPressureHeader=" << highPressureHeader << std::endl;
+    // std::cout << methodName << "highPressureHeader=" << highPressureHeader << std::endl;
 
     return fluidPropertiesFactory.make(highPressureHeader);
 }

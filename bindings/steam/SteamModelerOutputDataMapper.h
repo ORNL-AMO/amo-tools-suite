@@ -173,14 +173,14 @@ private:
     }
 
     void logSection(const std::string &message) const {
-        std::cout << std::endl;
-        std::cout << "======== " << std::endl;
-        std::cout << "======== " << message << std::endl;
-        std::cout << "======== " << std::endl;
+        // std::cout << std::endl;
+        // std::cout << "======== " << std::endl;
+        // std::cout << "======== " << message << std::endl;
+        // std::cout << "======== " << std::endl;
     }
 
     static void logMappingStart(const std::string &methodName) {
-        std::cout << "==== " << methodName << ": begin" << std::endl;
+        // std::cout << "==== " << methodName << ": begin" << std::endl;
     }
 
     static void logCommonStart(const std::string &methodName, const std::string &outputName) {
@@ -192,7 +192,7 @@ private:
     }
 
     static void logMessage(const std::string &methodName, const std::string &message) {
-        std::cout << "SteamModelerOutputDataMapper::" << methodName << ": " << message << std::endl;
+        // std::cout << "SteamModelerOutputDataMapper::" << methodName << ": " << message << std::endl;
     }
 
     void

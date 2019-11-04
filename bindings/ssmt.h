@@ -579,7 +579,7 @@ NAN_METHOD(heatExchanger) {
 NAN_METHOD(steamModeler) {
     const std::string methodName = std::string("SteamModeler::") + std::string(__func__) + ": ";
 
-    std::cout << methodName << "begin: steam modeler" << std::endl;
+    // std::cout << methodName << "begin: steam modeler" << std::endl;
 
     inp = info[0]->ToObject();
     r = Nan::New<Object>();
@@ -589,14 +589,14 @@ NAN_METHOD(steamModeler) {
     SteamModeler steamModeler = SteamModeler();
     SteamModelerOutputDataMapper outputDataMapper = SteamModelerOutputDataMapper();
 
-    std::cout << methodName << "begin: input mapping" << std::endl;
+    // std::cout << methodName << "begin: input mapping" << std::endl;
     SteamModelerInput steamModelerInput = inputDataMapper.map();
 
     // catch C++ error and throw as JS error
     try {
-        std::cout << methodName << "begin: modeling" << std::endl;
+        // std::cout << methodName << "begin: modeling" << std::endl;
         SteamModelerOutput steamModelerOutput = steamModeler.model(steamModelerInput);
-        std::cout << methodName << "begin: output mapping" << std::endl;
+        // std::cout << methodName << "begin: output mapping" << std::endl;
         outputDataMapper.map(steamModelerOutput);
     } catch (const std::runtime_error &e) {
         const std::string what = e.what();
@@ -606,13 +606,13 @@ NAN_METHOD(steamModeler) {
 
         const std::string failMsg =
                 "ERROR calling SteamModeler: " + what + "; headerCount=" + std::to_string(headerCount);
-        std::cout << methodName << failMsg << std::endl;
+        // std::cout << methodName << failMsg << std::endl;
 
         Local <String> failMsgLocal = Nan::New<String>(failMsg).ToLocalChecked();
         ThrowError(failMsgLocal);
     }
 
-    std::cout << methodName << "end: steam modeler" << std::endl;
+    // std::cout << methodName << "end: steam modeler" << std::endl;
 }
 
 #endif //AMO_TOOLS_SUITE_SSMT_H

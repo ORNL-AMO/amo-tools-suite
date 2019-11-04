@@ -256,10 +256,10 @@ double SteamSystemModelerTool::region4(const double t) {
 int SteamSystemModelerTool::regionSelect(const double p, const double t) {
     const std::string methodName = std::string("SteamSystemModelerTool::") + std::string(__func__) + ": ";
 
-    std::cout << methodName << "pressure in MPa=" << p << ", temp in K=" << t << std::endl;
+    // std::cout << methodName << "pressure in MPa=" << p << ", temp in K=" << t << std::endl;
 
 	const double boundaryPressure = (t >= TEMPERATURE_Tp) ? boundaryByTemperatureRegion3to2(t) : region4(t);
-	std::cout << methodName << "boundaryPressure=" << boundaryPressure << std::endl;
+	// std::cout << methodName << "boundaryPressure=" << boundaryPressure << std::endl;
 
 	if (t >= TEMPERATURE_MIN && t <= TEMPERATURE_Tp) {
 		if (p <= PRESSURE_MAX && p >= boundaryPressure) return 1;
@@ -279,7 +279,7 @@ int SteamSystemModelerTool::regionSelect(const double p, const double t) {
 	        ", boundaryPressure=" + std::to_string(boundaryPressure) +
 	        "; valid temp range=" + std::to_string(TEMPERATURE_MIN) + " - " + std::to_string(TEMPERATURE_MAX) +
 	        "; max pressure=" + std::to_string(PRESSURE_MAX);
-	std::cout << methodName << message << std::endl;
+	// std::cout << methodName << message << std::endl;
 	throw std::runtime_error(message);
 }
 

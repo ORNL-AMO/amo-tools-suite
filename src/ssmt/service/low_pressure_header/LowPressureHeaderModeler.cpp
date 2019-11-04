@@ -14,10 +14,10 @@ LowPressureHeaderModeler::model(const int headerCountInput, const HeaderWithHigh
 
     //if low pressure header exists
     if (headerCountInput > 1) {
-        std::cout << methodName << "low pressure header provided, processing" << std::endl;
+        // std::cout << methodName << "low pressure header provided, processing" << std::endl;
 
         //4A. Calculate to low pressure PRV
-        std::cout << methodName << "calculating low pressure PRV" << std::endl;
+        // std::cout << methodName << "calculating low pressure PRV" << std::endl;
         const std::shared_ptr<PrvWithoutDesuperheating> &lowPressurePrv =
                 lowPressurePrvCalculator.calc(headerCountInput, highPressureHeaderInput, highToLowTurbineInput,
                                               condensingTurbineInput, mediumPressureHeaderInput,
@@ -26,47 +26,47 @@ LowPressureHeaderModeler::model(const int headerCountInput, const HeaderWithHigh
                                               mediumPressureHeaderCalculationsDomain);
 
         //4B. Calculate flashed steam into low pressure header if selected
-        std::cout << methodName << "calculating condensateFlashTank" << std::endl;
+        // std::cout << methodName << "calculating condensateFlashTank" << std::endl;
         LowPressureFlashedSteamIntoHeaderCalculatorDomain lowPressureFlashedSteamIntoHeaderCalculatorDomain =
                 lowPressureFlashedSteamIntoHeaderCalculator.calc(headerCountInput, lowPressureHeaderInput,
                                                                  mediumPressureHeaderInput,
                                                                  highPressureHeaderCalculationsDomain,
                                                                  mediumPressureHeaderCalculationsDomain);
-        std::cout << methodName << "lowPressureFlashedSteamIntoHeaderCalculatorDomain="
-                  << lowPressureFlashedSteamIntoHeaderCalculatorDomain << std::endl;
+        // std::cout << methodName << "lowPressureFlashedSteamIntoHeaderCalculatorDomain="
+                //   << lowPressureFlashedSteamIntoHeaderCalculatorDomain << std::endl;
 
         //4C. Model Low Pressure Header
-        std::cout << methodName << "calculating lowPressureHeader" << std::endl;
+        // std::cout << methodName << "calculating lowPressureHeader" << std::endl;
         const SteamSystemModelerTool::FluidProperties &lowPressureHeaderOutput =
                 lowPressureHeaderCalculator.calc(headerCountInput, lowPressureHeaderInput, highToLowTurbineInput,
                                                  mediumToLowTurbineInput, boilerInput, lowPressurePrv,
                                                  blowdownFlashTank, lowPressureFlashedSteamIntoHeaderCalculatorDomain,
                                                  highPressureHeaderCalculationsDomain,
                                                  mediumPressureHeaderCalculationsDomain);
-        std::cout << methodName << "lowPressureHeaderOutput=" << lowPressureHeaderOutput << std::endl;
+        // std::cout << methodName << "lowPressureHeaderOutput=" << lowPressureHeaderOutput << std::endl;
 
         //4D. Calculate Heat Loss for Remaining Steam in Low Pressure Header
-        std::cout << methodName << "calculating lowPressureHeader heat loss" << std::endl;
+        // std::cout << methodName << "calculating lowPressureHeader heat loss" << std::endl;
         const HeatLoss &heatLoss = heatLossFactory.make(lowPressureHeaderInput, lowPressureHeaderOutput);
-        std::cout << methodName << "lowPressureHeader heatLoss=" << heatLoss << std::endl;
+        // std::cout << methodName << "lowPressureHeader heatLoss=" << heatLoss << std::endl;
 
-        std::cout << methodName << "updating lowPressureHeader with heat loss" << std::endl;
+        // std::cout << methodName << "updating lowPressureHeader with heat loss" << std::endl;
         const SteamSystemModelerTool::FluidProperties &lowPressureHeaderOutputUpdated =
                 fluidPropertiesFactory.makeWithSpecificVolume(heatLoss, lowPressureHeaderOutput.specificVolume);
-        std::cout << methodName << "lowPressureHeaderOutput=" << lowPressureHeaderOutputUpdated << std::endl;
+        // std::cout << methodName << "lowPressureHeaderOutput=" << lowPressureHeaderOutputUpdated << std::endl;
 
         //4E. Calculate Low Pressure Condensate
-        std::cout << methodName << "calculating lowPressureCondensate" << std::endl;
+        // std::cout << methodName << "calculating lowPressureCondensate" << std::endl;
         const SteamSystemModelerTool::FluidProperties lowPressureCondensate =
                 lowPressureCondensateCalculator.calc(lowPressureHeaderInput);
-        std::cout << methodName << "lowPressureCondensate=" << lowPressureCondensate << std::endl;
+        // std::cout << methodName << "lowPressureCondensate=" << lowPressureCondensate << std::endl;
 
         const LowPressureHeaderCalculationsDomain domain =
                 {lowPressurePrv, lowPressureHeaderOutputUpdated, heatLoss, lowPressureCondensate,
                  lowPressureFlashedSteamIntoHeaderCalculatorDomain};
         return std::make_shared<LowPressureHeaderCalculationsDomain>(domain);
     } else {
-        std::cout << methodName << "medium pressure header not provided, skipping" << std::endl;
+        // std::cout << methodName << "medium pressure header not provided, skipping" << std::endl;
         return nullptr;
     }
 }

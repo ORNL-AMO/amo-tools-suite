@@ -22,8 +22,8 @@ double MakeupWaterVolumeFlowCalculator::calcMakeupWaterVolumeFlow(
 
     const double volumeFlow = specificVolume * massFlow;
 
-    std::cout << methodName << "massFlow=" << massFlow << ", specificVolume" << specificVolume <<
-              ": result=" << volumeFlow << std::endl;
+    // std::cout << methodName << "massFlow=" << massFlow << ", specificVolume" << specificVolume <<
+    //           ": result=" << volumeFlow << std::endl;
 
     return volumeFlow;
 }
@@ -34,8 +34,8 @@ double MakeupWaterVolumeFlowCalculator::calcMakeupWaterVolumeFlowAnnual(const do
 
     const double volumeFlowAnnual = makeupWaterVolumeFlow * operatingHoursPerYear;
 
-    std::cout << methodName << "makeupWaterVolumeFlow=" << makeupWaterVolumeFlow <<
-              ", operatingHoursPerYear=" << operatingHoursPerYear << ": result=" << volumeFlowAnnual << std::endl;
+    // std::cout << methodName << "makeupWaterVolumeFlow=" << makeupWaterVolumeFlow <<
+    //           ", operatingHoursPerYear=" << operatingHoursPerYear << ": result=" << volumeFlowAnnual << std::endl;
 
     return volumeFlowAnnual;
 }

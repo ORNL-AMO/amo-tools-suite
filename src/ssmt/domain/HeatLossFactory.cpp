@@ -23,7 +23,7 @@ HeatLossFactory::make(const SteamSystemModelerTool::FluidProperties &headerOutpu
 
     HeatLoss heatLoss = {inletPressure, quantityType, quantityValue, inletMassFlow, percentHeatLoss};
 
-    std::cout << methodName << "heatLoss=" << heatLoss << std::endl;
+    //std::cout << methodName << "heatLoss=" << heatLoss << std::endl;
 
     return heatLoss;
 }

@@ -44,11 +44,11 @@ Turbine TurbineFactory::make(const SteamSystemModelerTool::FluidProperties &head
     const std::string methodName = "TurbineFactory::" + std::string(__func__) + " condensingTurbine: ";
 
     if (isCalcIdeal) {
-        std::cout << methodName << "isCalcIdeal is true, calculating condensingTurbine ideal" << std::endl;
+        // std::cout << methodName << "isCalcIdeal is true, calculating condensingTurbine ideal" << std::endl;
 
         return makeIdeal(headerProperties, condensingTurbine);
     } else {
-        std::cout << methodName << "isCalcIdeal is false, calculating condensingTurbine normal" << std::endl;
+        // std::cout << methodName << "isCalcIdeal is false, calculating condensingTurbine normal" << std::endl;
 
         return make(headerProperties, condensingTurbine);
     }
@@ -100,7 +100,7 @@ Turbine::TurbineProperty TurbineFactory::convertCondensingTurbineOperationToTurb
             break;
         default:
             std::string msg = "TurbineFactory::convertCondensingTurbineOperationToTurbineProperty<<: operator enum not handled";
-            std::cout << msg << std::endl;
+            // std::cout << msg << std::endl;
             throw std::invalid_argument(msg);
     }
 
@@ -116,11 +116,11 @@ Turbine TurbineFactory::makeWithMassFlow(const SteamSystemModelerTool::FluidProp
     const Turbine::TurbineProperty turbineProperty = Turbine::TurbineProperty::MassFlow;
 
     if (isCalcIdeal) {
-        std::cout << methodName << "isCalcIdeal is true, calculating turbine ideal" << std::endl;
+        // std::cout << methodName << "isCalcIdeal is true, calculating turbine ideal" << std::endl;
 
         return makeIdeal(headerProperties, turbineProperty, pressureTurbine, massFlow, headerWithLowPressure);
     } else {
-        std::cout << methodName << "isCalcIdeal is false, calculating turbine normal" << std::endl;
+        // std::cout << methodName << "isCalcIdeal is false, calculating turbine normal" << std::endl;
 
         return make(headerProperties, turbineProperty, pressureTurbine, massFlow, headerWithLowPressure);
     }
@@ -135,11 +135,11 @@ Turbine TurbineFactory::makeWithPowerOut(const SteamSystemModelerTool::FluidProp
     const Turbine::TurbineProperty turbineProperty = Turbine::TurbineProperty::PowerOut;
 
     if (isCalcIdeal) {
-        std::cout << methodName << "isCalcIdeal is true, calculating turbine ideal" << std::endl;
+        // std::cout << methodName << "isCalcIdeal is true, calculating turbine ideal" << std::endl;
 
         return makeIdeal(headerProperties, turbineProperty, pressureTurbine, powerOut, headerWithLowPressure);
     } else {
-        std::cout << methodName << "isCalcIdeal is false, calculating turbine normal" << std::endl;
+        // std::cout << methodName << "isCalcIdeal is false, calculating turbine normal" << std::endl;
 
         return make(headerProperties, turbineProperty, pressureTurbine, powerOut, headerWithLowPressure);
     }

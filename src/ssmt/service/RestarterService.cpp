@@ -10,9 +10,9 @@ void RestarterService::restartIfNotEnoughSteam(const std::shared_ptr<Turbine> &t
     const double neededMassFlow = turbine->getMassFlow();
     const double additionalSteamNeeded = neededMassFlow - availableMassFlow;
 
-    std::cout << methodName
-              << "neededMassFlow=" << neededMassFlow << ", availableMassFlow=" << availableMassFlow
-              << ", additionalSteamNeeded=" << additionalSteamNeeded << std::endl;
+    // std::cout << methodName
+            //   << "neededMassFlow=" << neededMassFlow << ", availableMassFlow=" << availableMassFlow
+            //   << ", additionalSteamNeeded=" << additionalSteamNeeded << std::endl;
 
     restartIfNotEnoughSteam(additionalSteamNeeded, boiler);
 }
@@ -32,9 +32,9 @@ void RestarterService::restartIfNotEnoughSteam(const double additionalSteamNeede
 
     const double tolerance = 1e-3;
 
-    std::cout << methodName
-              << "checking if the steam amount shortage is within tolerance; additionalSteamNeeded="
-              << additionalSteamNeeded << "; tolerance=+-" << tolerance << std::endl;
+    // std::cout << methodName
+            //   << "checking if the steam amount shortage is within tolerance; additionalSteamNeeded="
+            //   << additionalSteamNeeded << "; tolerance=+-" << tolerance << std::endl;
 
     //if need more than .0001
     if (absAdditionalSteamNeeded > tolerance) {
@@ -57,7 +57,7 @@ void RestarterService::restartIfNotEnoughSteam(const double additionalSteamNeede
 
 void RestarterService::logMessage(const std::string &message) const {
     const std::string delimeter = "======== ";
-    std::cout << delimeter << std::endl;
-    std::cout << delimeter << message << std::endl;
-    std::cout << delimeter << std::endl;
+    // std::cout << delimeter << std::endl;
+    // std::cout << delimeter << message << std::endl;
+    // std::cout << delimeter << std::endl;
 }

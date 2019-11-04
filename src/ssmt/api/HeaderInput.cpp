@@ -93,7 +93,7 @@ int HeaderInput::getHeaderCount() const {
     if (mediumPressureHeader != nullptr) headerCount++;
     if (lowPressureHeader != nullptr) headerCount++;
 
-    std::cout << "HeaderInput::getHeaderCount: headerCount=" << headerCount << std::endl;
+    //std::cout << "HeaderInput::getHeaderCount: headerCount=" << headerCount << std::endl;
 
     return headerCount;
 }

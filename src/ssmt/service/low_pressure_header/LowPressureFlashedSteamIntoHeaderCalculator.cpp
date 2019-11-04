@@ -15,14 +15,14 @@ LowPressureFlashedSteamIntoHeaderCalculatorDomain LowPressureFlashedSteamIntoHea
             ? nullptr
             : mediumPressureHeaderCalculationsDomain->highPressureCondensateFlashTank;
 
-    std::cout << methodName << "calculating flashedSteamIntoLowPressureHeader" << std::endl;
+//     std::cout << methodName << "calculating flashedSteamIntoLowPressureHeader" << std::endl;
     if (lowPressureHeaderInput->isFlashCondensate()) {
-        std::cout << methodName << "lowPressureHeaderInput isFlashCondensate, processing" << std::endl;
+        // std::cout << methodName << "lowPressureHeaderInput isFlashCondensate, processing" << std::endl;
         const SteamSystemModelerTool::FluidProperties &highPressureCondensate =
                 highPressureHeaderCalculationsDomain.highPressureCondensate;
         if (headerCountInput == 3) {
-            std::cout << methodName << "medium pressure header provided" << std::endl;
-            std::cout << methodName << "calculating mediumPressureCondensateFlashTank" << std::endl;
+        //     std::cout << methodName << "medium pressure header provided" << std::endl;
+        //     std::cout << methodName << "calculating mediumPressureCondensateFlashTank" << std::endl;
             const SteamSystemModelerTool::FluidProperties &mediumPressureCondensate =
                     mediumPressureHeaderCalculationsDomain->mediumPressureCondensate;
             highPressureCondensateFlashTank = mediumPressureHeaderCalculationsDomain->highPressureCondensateFlashTank;
@@ -31,15 +31,15 @@ LowPressureFlashedSteamIntoHeaderCalculatorDomain LowPressureFlashedSteamIntoHea
                                                           mediumPressureCondensate, highPressureCondensate,
                                                           highPressureCondensateFlashTank);
         } else {
-            std::cout << methodName << "medium pressure header not provided" << std::endl;
-            std::cout << methodName
-                      << "calculating highPressureCondensateFlashTank with lowPressureHeaderInput pressure"
-                      << std::endl;
+        //     std::cout << methodName << "medium pressure header not provided" << std::endl;
+        //     std::cout << methodName
+                //       << "calculating highPressureCondensateFlashTank with lowPressureHeaderInput pressure"
+                //       << std::endl;
             highPressureCondensateFlashTank =
                     makeHighPressureCondensateFlashTank(lowPressureHeaderInput, highPressureCondensate);
         }
     } else {
-        std::cout << methodName << "lowPressureHeaderInput not isFlashCondensate, skipping" << std::endl;
+        // std::cout << methodName << "lowPressureHeaderInput not isFlashCondensate, skipping" << std::endl;
     }
 
     return {mediumPressureCondensateFlashTank, highPressureCondensateFlashTank};
@@ -56,18 +56,18 @@ std::shared_ptr<FlashTank> LowPressureFlashedSteamIntoHeaderCalculator::makeMedi
 
     //4B. Calculate Medium Pressure Flash Tank
     //mix inlet condensate using header calculate
-    std::cout << methodName << "calculating highAndMediumPressureMixHeader" << std::endl;
+//     std::cout << methodName << "calculating highAndMediumPressureMixHeader" << std::endl;
     std::shared_ptr<Header> highAndMediumPressureMixHeader =
             makeHighAndMediumPressureMixHeader(lowPressureHeaderInput, mediumPressureHeaderInput,
                                                mediumPressureCondensate, highPressureCondensate,
                                                highPressureCondensateFlashTank);
-    std::cout << methodName << "highAndMediumPressureMixHeader=" << *highAndMediumPressureMixHeader << std::endl;
+//     std::cout << methodName << "highAndMediumPressureMixHeader=" << *highAndMediumPressureMixHeader << std::endl;
 
     //run the mixed condensate through the flash tank
-    std::cout << methodName << "calculating mediumPressureCondensateFlashTank" << std::endl;
+//     std::cout << methodName << "calculating mediumPressureCondensateFlashTank" << std::endl;
     const FlashTank &flashTank =
             flashTankFactory.make(highAndMediumPressureMixHeader, lowPressureHeaderInput);
-    std::cout << methodName << "mediumPressureCondensateFlashTank=" << flashTank << std::endl;
+//     std::cout << methodName << "mediumPressureCondensateFlashTank=" << flashTank << std::endl;
 
     return std::make_shared<FlashTank>(flashTank);
 }
@@ -84,21 +84,21 @@ std::shared_ptr<Header> LowPressureFlashedSteamIntoHeaderCalculator::makeHighAnd
     std::shared_ptr<Header> highAndMediumPressureMixHeader;
 
     if (mediumPressureHeaderInput->isFlashCondensate()) {
-        std::cout << methodName
-                  << "mediumPressureHeaderInput isFlashCondensate,"
-                  << " calculating highAndMediumPressureMixHeader with flash tank"
-                  << " (highPressureCondensateFlashTank)"
-                  << std::endl;
+        // std::cout << methodName
+                //   << "mediumPressureHeaderInput isFlashCondensate,"
+                //   << " calculating highAndMediumPressureMixHeader with flash tank"
+                //   << " (highPressureCondensateFlashTank)"
+                //   << std::endl;
         //if high pressure condensate has been flashed into medium pressure header,
         //inlets will be leftover condensate from flash tank and medium pressure condensate
         const Header &header =
                 headerFactory.make(lowPressureHeaderInput, highPressureCondensateFlashTank, mediumPressureCondensate);
         highAndMediumPressureMixHeader = std::make_shared<Header>(header);
     } else {
-        std::cout << methodName
-                  << "mediumPressureHeaderInput not isFlashCondensate,"
-                  << " calculating highAndMediumPressureMixHeader without flash tank"
-                  << std::endl;
+        // std::cout << methodName
+                //   << "mediumPressureHeaderInput not isFlashCondensate,"
+                //   << " calculating highAndMediumPressureMixHeader without flash tank"
+                //   << std::endl;
         //if not, inlets will be high pressure condensate and medium pressure condensate
         const Header &header =
                 headerFactory.make(lowPressureHeaderInput, highPressureCondensate, mediumPressureCondensate);
@@ -118,7 +118,7 @@ std::shared_ptr<FlashTank> LowPressureFlashedSteamIntoHeaderCalculator::makeHigh
     const double pressure = lowPressureHeaderInput->getPressure();
 
     const FlashTank &flashTank = flashTankFactory.make(pressure, highPressureCondensate);
-    std::cout << methodName << "highPressureCondensateFlashTank=" << flashTank << std::endl;
+//     std::cout << methodName << "highPressureCondensateFlashTank=" << flashTank << std::endl;
 
     return std::make_shared<FlashTank>(flashTank);
 }

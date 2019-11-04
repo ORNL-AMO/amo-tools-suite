@@ -16,32 +16,32 @@ MediumPressureHeaderCalculator::calc(const Boiler &boiler, const PressureTurbine
     std::shared_ptr<Turbine> highToLowPressureTurbineUpdated = highToLowPressureTurbine;
     std::shared_ptr<Turbine> highToLowPressureTurbineIdealUpdated = highToLowPressureTurbineIdeal;
 
-    std::cout << methodName << "calculating mediumPressureHeaderOutput" << std::endl;
+//     std::cout << methodName << "calculating mediumPressureHeaderOutput" << std::endl;
     //3B1 & 3B2. Calculate medium pressure header
     const Header mediumPressureHeader =
             headerFactory.make(mediumPressureHeaderInput, highToMediumPressurePrv, highToMediumTurbineInput,
                                highToMediumPressureTurbine, highPressureCondensateFlashTank);
-    std::cout << methodName << "mediumPressureHeader=" << mediumPressureHeader << std::endl;
+//     std::cout << methodName << "mediumPressureHeader=" << mediumPressureHeader << std::endl;
 
     const SteamSystemModelerTool::FluidProperties &mediumPressureHeaderOutput =
             fluidPropertiesFactory.make(mediumPressureHeader);
-    std::cout << methodName << "mediumPressureHeaderOutput=" << mediumPressureHeaderOutput << std::endl;
+//     std::cout << methodName << "mediumPressureHeaderOutput=" << mediumPressureHeaderOutput << std::endl;
 
     //3B3. Check that medium pressure header has enough steam to be processed
     const double mediumPressureHeaderMassFlow = mediumPressureHeader.getInletMassFlow();
     const double mediumPressureHeaderInputProcessSteamUsage = mediumPressureHeaderInput->getProcessSteamUsage();
 
     if (mediumPressureHeaderMassFlow < mediumPressureHeaderInputProcessSteamUsage) {
-        std::cout << methodName << "mediumPressureHeaderMassFlow=" << mediumPressureHeaderMassFlow
-                  << " < mediumPressureHeaderInputProcessSteamUsage=" << mediumPressureHeaderInputProcessSteamUsage
-                  << "; attempt to adjust medium to low turbine" << std::endl;
+        // std::cout << methodName << "mediumPressureHeaderMassFlow=" << mediumPressureHeaderMassFlow
+                //   << " < mediumPressureHeaderInputProcessSteamUsage=" << mediumPressureHeaderInputProcessSteamUsage
+                //   << "; attempt to adjust medium to low turbine" << std::endl;
 
         const SteamReducerOutput &steamReducerOutput =
                 steamBalanceCheckerService.check("mediumPressureHeader", highToLowTurbineInput, lowPressureHeaderInput,
                                                  boiler, highToLowPressureTurbine, highToLowPressureTurbineIdeal,
                                                  highPressureHeaderOutput, mediumPressureHeaderInputProcessSteamUsage,
                                                  mediumPressureHeaderMassFlow);
-        std::cout << methodName << "steamReducerOutput=" << steamReducerOutput << std::endl;
+        // std::cout << methodName << "steamReducerOutput=" << steamReducerOutput << std::endl;
 
         highToLowPressureTurbineUpdated = steamReducerOutput.highToLowPressureTurbineUpdated;
         highToLowPressureTurbineIdealUpdated = steamReducerOutput.highToLowPressureTurbineIdealUpdated;

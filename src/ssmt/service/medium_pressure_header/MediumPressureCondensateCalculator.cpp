@@ -14,7 +14,7 @@ MediumPressureCondensateCalculator::calc(
     const double massFlow = massFlowCalculator.calc(mediumPressureHeaderInput);
     const double energyFlow = energyFlowCalculator.calc(massFlow, steamPropertiesOutput);
 
-    std::cout << methodName << "calculated massFlow=" << massFlow << ", energyFlow=" << energyFlow << std::endl;
+    //std::cout << methodName << "calculated massFlow=" << massFlow << ", energyFlow=" << energyFlow << std::endl;
 
     return SteamSystemModelerTool::FluidProperties(massFlow, energyFlow, steamPropertiesOutput);
 }
