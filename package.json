@@ -21,6 +21,7 @@
     "npm": "6.4.1"
   },
   "scripts": {
+    "test-ssmt": "tap debug tests/js/ssmtTest.js tests/js/steamModelerTest.js",
     "test": "tap debug tests/js/*.js",
     "at": "tap debug tests/at/js/*.js"
   },
