@@ -6,48 +6,6 @@ function rnd(value) {
     return Number(Math.round(value + 'e' + 6) + 'e-' + 6);
 }
 
-test('steamPropertiesData', function (t) {
-    t.plan(10);
-
-    var input = {
-        "pressure": 5,
-        "wantEntropy": true
-    };
-
-    var res = bindings.steamPropertiesData(input);
-
-    var data = res.results;
-
-
-    input.wantEntropy = false;
-    input.temperature = 300;
-
-    res = bindings.steamPropertiesData(input);
-
-    var otherData = res.results;
-
-    t.equal(rnd(data[1].entropy), rnd(0.10000000000005363), 'data[1].entropy is ' + data[1].entropy);
-
-    t.equal(rnd(data[5].entropy), rnd(0.4999999999999979), 'data[5].entropy is ' + data[5].entropy);
-
-    t.equal(rnd(data[10].entropy), rnd(0.9999999999999997), 'data[10].entropy is ' + data[10].entropy);
-
-    t.equal(rnd(data[15].entropy), rnd(1.500000000000002), 'data[15].entropy is ' + data[15].entropy);
-
-    t.equal(rnd(data[20].entropy), rnd(2.0000000000000013), 'data[20].entropy is ' + data[20].entropy);
-
-    t.equal(rnd(data[25].entropy), rnd(2.5000000000000004), 'data[25].entropy is ' + data[25].entropy);
-
-    t.equal(rnd(data[60].entropy), rnd(5.9999999999999964), 'data[60].entropy is ' + data[60].entropy);
-
-    t.equal(rnd(data[65].entropy), rnd(6.499999999999992), 'data[65].entropy is ' + data[65].entropy);
-
-    t.equal(rnd(data[70].entropy), rnd(6.999999999999992), 'data[70].entropy is ' + data[70].entropy);
-
-    t.equal(rnd(data[75].entropy), rnd(7.49999999999999), 'data[75].entropy is ' + data[75].entropy);
-
-});
-
 test('saturatedPropertiesGivenTemperature', function (t) {
     t.plan(12);
     t.type(bindings.saturatedPropertiesGivenTemperature, 'function');

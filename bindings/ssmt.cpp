@@ -4,9 +4,6 @@
 using namespace Nan;
 
 NAN_MODULE_INIT(InitSsmt) {
-    Nan::Set(target, New<String>("steamPropertiesData").ToLocalChecked(),
-             GetFunction(New<FunctionTemplate>(steamPropertiesData)).ToLocalChecked());
-
     Nan::Set(target, New<String>("saturatedPressure").ToLocalChecked(),
              GetFunction(New<FunctionTemplate>(saturatedPressure)).ToLocalChecked());
 
