@@ -14,7 +14,7 @@ SteamReducer::reduceSteamThroughHighToLowTurbine(const double additionalSteamNee
     //if the turbine is in use
     if (highToLowTurbineInput.isUseTurbine()) {
         const PressureTurbineOperation &pressureTurbineOperation = highToLowTurbineInput.getOperationType();
-        // std::cout << methodName << "pressureTurbineOperation=" << pressureTurbineOperation << std::endl;
+        std::cout << methodName << "pressureTurbineOperation=" << pressureTurbineOperation << std::endl;
 
         switch (pressureTurbineOperation) {
             case PressureTurbineOperation::FLOW_RANGE:
@@ -30,13 +30,13 @@ SteamReducer::reduceSteamThroughHighToLowTurbine(const double additionalSteamNee
                                          lowPressureHeaderInput);
                 break;
             case PressureTurbineOperation::POWER_GENERATION:
-                // std::cout << methodName << "pressureTurbineOperation is POWER_GENERATION,"
-                //          << " skipping reducing as fixed steam cannot reduce steam through turbine" << std::endl;
+                std::cout << methodName << "pressureTurbineOperation is POWER_GENERATION,"
+                         << " skipping reducing as fixed steam cannot reduce steam through turbine" << std::endl;
                 steamReducerOutput = {additionalSteamNeeded, highToLowPressureTurbine, highToLowPressureTurbineIdeal};
                 break;
             case PressureTurbineOperation::STEAM_FLOW:
-                // std::cout << methodName << "pressureTurbineOperation is STEAM_FLOW,"
-                //          << " skipping reducing as fixed steam cannot reduce steam through turbine" << std::endl;
+                std::cout << methodName << "pressureTurbineOperation is STEAM_FLOW,"
+                         << " skipping reducing as fixed steam cannot reduce steam through turbine" << std::endl;
                 steamReducerOutput = {additionalSteamNeeded, highToLowPressureTurbine, highToLowPressureTurbineIdeal};
                 break;
             case PressureTurbineOperation::BALANCE_HEADER:
@@ -47,16 +47,16 @@ SteamReducer::reduceSteamThroughHighToLowTurbine(const double additionalSteamNee
                 break;
             default:
                 std::string msg = methodName + "PressureTurbineOperation enum not handled";
-                // std::cout << msg << std::endl;
+                std::cout << msg << std::endl;
                 throw std::invalid_argument(msg);
         }
     } else {
-        // std::cout << methodName << "high to low turbine not provided, skipping reducing" << std::endl;
+        std::cout << methodName << "high to low turbine not provided, skipping reducing" << std::endl;
         steamReducerOutput = {additionalSteamNeeded, highToLowPressureTurbine, highToLowPressureTurbineIdeal};
     }
 
-    // std::cout << methodName
-            //  << "remainingAdditionalSteamNeeded=" << steamReducerOutput.remainingAdditionalSteamNeeded << std::endl;
+    std::cout << methodName
+             << "remainingAdditionalSteamNeeded=" << steamReducerOutput.remainingAdditionalSteamNeeded << std::endl;
 
     return steamReducerOutput;
 }
@@ -77,8 +77,8 @@ SteamReducer::reduceBalanceHeader(const double additionalSteamNeeded,
     //balance header, all steam is available to be taken
     const double availableSteam = highToLowPressureTurbine->getMassFlow();
     const double remainingSteam = availableSteam - additionalSteamNeeded;
-    // std::cout << methodName << "availableSteam=" << availableSteam << " - additionalSteamNeeded="
-            //  << additionalSteamNeeded << "; resulting remainingSteam=" << remainingSteam << std::endl;
+    std::cout << methodName << "availableSteam=" << availableSteam << " - additionalSteamNeeded="
+             << additionalSteamNeeded << "; resulting remainingSteam=" << remainingSteam << std::endl;
 
     double massFlow = remainingSteam;
     //if all steam can be taken,
@@ -92,22 +92,22 @@ SteamReducer::reduceBalanceHeader(const double additionalSteamNeeded,
         remainingAdditionalSteamNeeded = additionalSteamNeeded - availableSteam;
     }
 
-    // std::cout << methodName << "remainingAdditionalSteamNeeded=" << remainingAdditionalSteamNeeded << std::endl;
+    std::cout << methodName << "remainingAdditionalSteamNeeded=" << remainingAdditionalSteamNeeded << std::endl;
 
-    // std::cout << methodName
-            //  << "calculating highToLowPressureTurbine with massFlow=" << massFlow << std::endl;
+    std::cout << methodName
+             << "calculating highToLowPressureTurbine with massFlow=" << massFlow << std::endl;
     highToLowPressureTurbineUpdated =
             turbineFactory.makePtrWithMassFlow(highPressureHeaderOutput, highToLowTurbineInput, massFlow,
                                                lowPressureHeaderInput, false);
-    // std::cout << methodName << "highToLowPressureTurbineUpdated=" << highToLowPressureTurbineUpdated << std::endl;
+    std::cout << methodName << "highToLowPressureTurbineUpdated=" << highToLowPressureTurbineUpdated << std::endl;
 
-    // std::cout << methodName
-             // << "calculating highToLowPressureTurbineIdeal with massFlow=" << massFlow << std::endl;
+    std::cout << methodName
+             << "calculating highToLowPressureTurbineIdeal with massFlow=" << massFlow << std::endl;
     highToLowPressureTurbineIdealUpdated =
             turbineFactory.makePtrWithMassFlow(highPressureHeaderOutput, highToLowTurbineInput, massFlow,
                                                lowPressureHeaderInput, true);
-    // std::cout << methodName << "highToLowPressureTurbineIdealUpdated=" << highToLowPressureTurbineIdealUpdated
-            //  << std::endl;
+    std::cout << methodName << "highToLowPressureTurbineIdealUpdated=" << highToLowPressureTurbineIdealUpdated
+             << std::endl;
 
     return {remainingAdditionalSteamNeeded, highToLowPressureTurbineUpdated, highToLowPressureTurbineIdealUpdated};
 }
@@ -134,22 +134,22 @@ SteamReducer::reducePowerRange(const double additionalSteamNeeded,
         const double previousMassFlow = highToLowPressureTurbine->getMassFlow();
 
         //calculate header using minimum power out needed
-        // std::cout << methodName
-                //   << "calculating highToLowPressureTurbine with minimum power out needed (highToLowTurbineInputOperationValue1)="
-                //   << highToLowTurbineInputOperationValue1 << std::endl;
+        std::cout << methodName
+                  << "calculating highToLowPressureTurbine with minimum power out needed (highToLowTurbineInputOperationValue1)="
+                  << highToLowTurbineInputOperationValue1 << std::endl;
         highToLowPressureTurbineUpdated =
                 turbineFactory.makePtrWithPowerOut(highPressureHeaderOutput, highToLowTurbineInput,
                                                    highToLowTurbineInputOperationValue1, lowPressureHeaderInput, false);
-        // std::cout << methodName << "highToLowPressureTurbineUpdated=" << highToLowPressureTurbineUpdated << std::endl;
+        std::cout << methodName << "highToLowPressureTurbineUpdated=" << highToLowPressureTurbineUpdated << std::endl;
 
-        // std::cout << methodName
-                //   << "calculating highToLowPressureTurbineIdeal with minimum power out needed (highToLowTurbineInputOperationValue1)="
-                //   << highToLowTurbineInputOperationValue1 << std::endl;
+        std::cout << methodName
+                  << "calculating highToLowPressureTurbineIdeal with minimum power out needed (highToLowTurbineInputOperationValue1)="
+                  << highToLowTurbineInputOperationValue1 << std::endl;
         highToLowPressureTurbineIdealUpdated =
                 turbineFactory.makePtrWithPowerOut(highPressureHeaderOutput, highToLowTurbineInput,
                                                    highToLowTurbineInputOperationValue1, lowPressureHeaderInput, true);
-        // std::cout << methodName << "highToLowPressureTurbineIdealUpdated=" << highToLowPressureTurbineIdealUpdated
-                //   << std::endl;
+        std::cout << methodName << "highToLowPressureTurbineIdealUpdated=" << highToLowPressureTurbineIdealUpdated
+                  << std::endl;
 
         //amount reduced = previous mass flow - mass flow at min need
         const double highToLowPressureTurbineMassFlow = highToLowPressureTurbineUpdated->getMassFlow();
@@ -161,22 +161,22 @@ SteamReducer::reducePowerRange(const double additionalSteamNeeded,
         //if excess amount of steam was taken than needed when reducing, put excess steam taken back into turbine
         if (newSteamNeed < 0) {
             const double massFlow = highToLowPressureTurbineMassFlow + fabs(newSteamNeed);
-            // std::cout << methodName
-                    //   << "calculating highToLowPressureTurbine, returning excess steam amount, with mass flow="
-                    //   << massFlow << std::endl;
+            std::cout << methodName
+                      << "calculating highToLowPressureTurbine, returning excess steam amount, with mass flow="
+                      << massFlow << std::endl;
             highToLowPressureTurbineUpdated =
                     turbineFactory.makePtrWithMassFlow(highPressureHeaderOutput, highToLowTurbineInput, massFlow,
                                                        lowPressureHeaderInput, false);
-            // std::cout << methodName << "highToLowPressureTurbineUpdated=" << highToLowPressureTurbineUpdated << std::endl;
+            std::cout << methodName << "highToLowPressureTurbineUpdated=" << highToLowPressureTurbineUpdated << std::endl;
 
-            // std::cout << methodName
-                    //   << "calculating highToLowPressureTurbineIdeal, returning excess steam amount, with mass flow="
-                    //   << massFlow << std::endl;
+            std::cout << methodName
+                      << "calculating highToLowPressureTurbineIdeal, returning excess steam amount, with mass flow="
+                      << massFlow << std::endl;
             highToLowPressureTurbineIdealUpdated =
                     turbineFactory.makePtrWithMassFlow(highPressureHeaderOutput, highToLowTurbineInput, massFlow,
                                                        lowPressureHeaderInput, true);
-            // std::cout << methodName << "highToLowPressureTurbineIdealUpdated=" << highToLowPressureTurbineIdealUpdated
-                    //   << std::endl;
+            std::cout << methodName << "highToLowPressureTurbineIdealUpdated=" << highToLowPressureTurbineIdealUpdated
+                      << std::endl;
 
             remainingAdditionalSteamNeeded = 0;
         } else {
@@ -213,23 +213,23 @@ SteamReducer::reduceFlowRange(const double additionalSteamNeeded,
         const double currentMassFlow = highToLowPressureTurbineMassFlow;
 
         //calculate turbine at minimum value
-        // std::cout << methodName
-                //   << "calculating highToLowPressureTurbine with amount needed (highToLowTurbineInputOperationValue1)="
-                //   << highToLowTurbineInputOperationValue1 << std::endl;
+        std::cout << methodName
+                  << "calculating highToLowPressureTurbine with amount needed (highToLowTurbineInputOperationValue1)="
+                  << highToLowTurbineInputOperationValue1 << std::endl;
         highToLowPressureTurbineUpdated =
                 turbineFactory.makePtrWithMassFlow(highPressureHeaderOutput, highToLowTurbineInput,
                                                    highToLowTurbineInputOperationValue1, lowPressureHeaderInput, false);
-        // std::cout << methodName << "highToLowPressureTurbineUpdated=" << highToLowPressureTurbineIdealUpdated
-                //   << std::endl;
+        std::cout << methodName << "highToLowPressureTurbineUpdated=" << highToLowPressureTurbineIdealUpdated
+                  << std::endl;
 
-        // std::cout << methodName
-                //   << "calculating highToLowPressureTurbineIdeal with amount needed (highToLowTurbineInputOperationValue1)="
-                //   << highToLowTurbineInputOperationValue1 << std::endl;
+        std::cout << methodName
+                  << "calculating highToLowPressureTurbineIdeal with amount needed (highToLowTurbineInputOperationValue1)="
+                  << highToLowTurbineInputOperationValue1 << std::endl;
         highToLowPressureTurbineIdealUpdated =
                 turbineFactory.makePtrWithMassFlow(highPressureHeaderOutput, highToLowTurbineInput,
                                                    highToLowTurbineInputOperationValue1, lowPressureHeaderInput, true);
-        // std::cout << methodName << "highToLowPressureTurbineIdealUpdated=" << highToLowPressureTurbineIdealUpdated
-                //   << std::endl;
+        std::cout << methodName << "highToLowPressureTurbineIdealUpdated=" << highToLowPressureTurbineIdealUpdated
+                  << std::endl;
 
         //calculate amount of mass flow reduced
         const double massFlowReduction = currentMassFlow - highToLowPressureTurbineUpdated->getMassFlow();
@@ -240,23 +240,23 @@ SteamReducer::reduceFlowRange(const double additionalSteamNeeded,
         //if more steam taken than needed when reducing, put excess steam taken back into turbine
         if (newSteamNeed < 0) {
             const double massFlow = highToLowPressureTurbineUpdated->getMassFlow() + fabs(newSteamNeed);
-            // std::cout << methodName
-                    //   << "calculating highToLowPressureTurbine, returning excess steam amount, with mass flow="
-                    //   << massFlow << std::endl;
+            std::cout << methodName
+                      << "calculating highToLowPressureTurbine, returning excess steam amount, with mass flow="
+                      << massFlow << std::endl;
             highToLowPressureTurbineUpdated =
                     turbineFactory.makePtrWithMassFlow(highPressureHeaderOutput, highToLowTurbineInput,
                                                        massFlow, lowPressureHeaderInput, false);
-            // std::cout << methodName << "highToLowPressureTurbineUpdated=" << highToLowPressureTurbineUpdated
-                    //   << std::endl;
+            std::cout << methodName << "highToLowPressureTurbineUpdated=" << highToLowPressureTurbineUpdated
+                      << std::endl;
 
-            // std::cout << methodName
-                    //   << "calculating highToLowPressureTurbineIdeal, returning excess steam amount, with mass flow="
-                    //   << massFlow << std::endl;
+            std::cout << methodName
+                      << "calculating highToLowPressureTurbineIdeal, returning excess steam amount, with mass flow="
+                      << massFlow << std::endl;
             highToLowPressureTurbineIdealUpdated =
                     turbineFactory.makePtrWithMassFlow(highPressureHeaderOutput, highToLowTurbineInput,
                                                        massFlow, lowPressureHeaderInput, true);
-            // std::cout << methodName << "highToLowPressureTurbineIdealUpdated=" << highToLowPressureTurbineIdealUpdated
-                    //  << std::endl;
+            std::cout << methodName << "highToLowPressureTurbineIdealUpdated=" << highToLowPressureTurbineIdealUpdated
+                     << std::endl;
 
             remainingAdditionalSteamNeeded = 0;
         } else {

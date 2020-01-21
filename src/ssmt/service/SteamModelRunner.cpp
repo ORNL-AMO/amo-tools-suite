@@ -26,7 +26,7 @@ SteamModelRunner::run(const bool isBaselineCalc, const double baselinePowerDeman
 
     std::string msg =
             methodName + "ran " + std::to_string(maxIterationCount) + " times and did not balance system, aborting";
-    // std::cout << msg << std::endl;
+    std::cout << msg << std::endl;
     throw std::logic_error(msg);
 }
 
@@ -35,17 +35,17 @@ double SteamModelRunner::handleSteamBalanceException(const SteamBalanceException
     const std::string methodName = std::string("SteamModelRunner::") + std::string(__func__) + ": ";
 
     const double adjustedInitialSteam = e.getAdjustedInitialSteam();
-    // std::cout << methodName << e << std::endl;
-    // std::cout << methodName << "iterationCount=" << iterationCount
-            //   << " with initialMassFlow=" << initialMassFlow
-            //   << " failed; trying again with initialMassFlow=" << adjustedInitialSteam
-            //   << std::endl;
+    std::cout << methodName << e << std::endl;
+    std::cout << methodName << "iterationCount=" << iterationCount
+              << " with initialMassFlow=" << initialMassFlow
+              << " failed; trying again with initialMassFlow=" << adjustedInitialSteam
+              << std::endl;
     return adjustedInitialSteam;
 }
 
 
 void SteamModelRunner::logSection(const std::string &message) const {
-    // std::cout << "-------- " << std::endl;
-    // std::cout << "-------- " << message << std::endl;
-    // std::cout << "-------- " << std::endl;
+    std::cout << "-------- " << std::endl;
+    std::cout << "-------- " << message << std::endl;
+    std::cout << "-------- " << std::endl;
 }

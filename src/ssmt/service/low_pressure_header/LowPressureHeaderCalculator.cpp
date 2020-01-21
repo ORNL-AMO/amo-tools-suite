@@ -20,7 +20,7 @@ LowPressureHeaderCalculator::calc(const int headerCountInput,
                                boilerInput, lowPressurePrv, highToLowPressureTurbine, blowdownFlashTank,
                                lowPressureFlashedSteamIntoHeaderCalculatorDomain,
                                mediumPressureHeaderCalculationsDomain);
-    //std::cout << methodName << "lowPressureHeader=" << lowPressureHeader << std::endl;
+    std::cout << methodName << "lowPressureHeader=" << lowPressureHeader << std::endl;
 
     return fluidPropertiesFactory.make(lowPressureHeader);
 }

@@ -30,10 +30,14 @@ PrvWithoutDesuperheating PrvCalculator::calcHighToMediumPrvWithoutDesuperheating
         const std::shared_ptr<Turbine> &highToMediumPressureTurbine,
         const std::shared_ptr<Turbine> &condensingTurbine,
         const std::shared_ptr<HeaderNotHighestPressure> &mediumPressureHeaderInput) const {
+
+    std::cout << "CALCULATE" << std::endl;
     const double prvMassFlow =
             calcPrvMassFlow(highPressureHeaderOutput, highPressureHeaderInput, highToLowTurbineInput,
                             highToMediumTurbineInput, condensingTurbineInput, highToLowPressureTurbine,
                             highToMediumPressureTurbine, condensingTurbine);
+
+    std::cout << "MASSFLOW CALCULATED!" << std::endl;
     return prvWithoutDesuperheatingFactory.make(highPressureHeaderOutput, prvMassFlow, mediumPressureHeaderInput);
 }
 
@@ -46,6 +50,8 @@ double PrvCalculator::calcPrvMassFlow(const SteamSystemModelerTool::FluidPropert
                                       const std::shared_ptr<Turbine> &highToLowPressureTurbine,
                                       const std::shared_ptr<Turbine> &highToMediumPressureTurbine,
                                       const std::shared_ptr<Turbine> &condensingTurbine) const {
+
+    std::cout << "CALC PRV MASS FLOW!" << std::endl;
     double prvMassFlow = highPressureHeader.massFlow - highPressureHeaderInput.getProcessSteamUsage();
 
     if (highToLowTurbineInput.isUseTurbine()) {
@@ -68,11 +74,11 @@ PrvCalculator::getTurbineMassFlow(const std::shared_ptr<Turbine> &turbine, const
     double massFlow = 0;
 
     if (turbine == nullptr) {
-        // std::cout << "PrvCalculator::getTurbineMassFlow:"
-        //           << " ERROR: Turbine instance '"
-        //           << turbineName
-        //           << "' expected to exist but was null/not existing; using 0"
-        //           << std::endl;
+        std::cout << "PrvCalculator::getTurbineMassFlow:"
+                  << " ERROR: Turbine instance '"
+                  << turbineName
+                  << "' expected to exist but was null/not existing; using 0"
+                  << std::endl;
     } else {
         massFlow = turbine->getMassFlow();
     }

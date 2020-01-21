@@ -16,14 +16,14 @@ SteamBalanceCheckerService::check(const std::string &itemName, const PressureTur
 
     //if need more than .0001
     if (absAdditionalSteamNeeded > 1e-3) {
-        // std::cout << methodName
-                //   << itemName << " additionalSteamNeeded=" << additionalSteamNeeded << " > " << 1e-3
-                //   << "; attempting to take steam needed from highToLowPressureTurbine" << std::endl;
+        std::cout << methodName
+                  << itemName << " additionalSteamNeeded=" << additionalSteamNeeded << " > " << 1e-3
+                  << "; attempting to take steam needed from highToLowPressureTurbine" << std::endl;
         const SteamReducerOutput &steamReducerOutput =
                 steamReducer.reduceSteamThroughHighToLowTurbine(additionalSteamNeeded, highToLowTurbineInput,
                                                                 highToLowPressureTurbine, highToLowPressureTurbineIdeal,
                                                                 highPressureHeaderOutput, lowPressureHeaderInput);
-        // std::cout << methodName << "steamReducerOutput=" << steamReducerOutput << std::endl;
+        std::cout << methodName << "steamReducerOutput=" << steamReducerOutput << std::endl;
 
         const double remainingAdditionalSteamNeeded = steamReducerOutput.remainingAdditionalSteamNeeded;
 
@@ -59,14 +59,14 @@ SteamBalanceCheckerService::check(const std::string &itemName, const PressureTur
 
     //if need more than .0001
     if (absAdditionalSteamNeeded > 1e-3) {
-        // std::cout << methodName
-                //   << itemName << " additionalSteamNeeded=" << additionalSteamNeeded << " > " << 1e-3
-                //   << "; attempting to take steam needed from high to low turbine" << std::endl;
+        std::cout << methodName
+                  << itemName << " additionalSteamNeeded=" << additionalSteamNeeded << " > " << 1e-3
+                  << "; attempting to take steam needed from high to low turbine" << std::endl;
         const SteamReducerOutput &steamReducerOutput =
                 steamReducer.reduceSteamThroughHighToLowTurbine(additionalSteamNeeded, highToLowTurbineInput,
                                                                 highToLowPressureTurbine, highToLowPressureTurbineIdeal,
                                                                 highPressureHeaderOutput, lowPressureHeaderInput);
-        // std::cout << methodName << "steamReducerOutput=" << steamReducerOutput << std::endl;
+        std::cout << methodName << "steamReducerOutput=" << steamReducerOutput << std::endl;
 
         const double remainingAdditionalSteamNeeded = steamReducerOutput.remainingAdditionalSteamNeeded;
 
@@ -85,8 +85,8 @@ SteamBalanceCheckerService::check(const std::shared_ptr<Turbine> &turbine, const
     //check that enough mass flow is available for set amount
     const double highToLowPressureTurbineMassFlow = turbine->getMassFlow();
     if (highToLowPressureTurbineMassFlow > availableMassFlow) {
-        // std::cout << methodName << "highToLowPressureTurbineMassFlow=" << highToLowPressureTurbineMassFlow
-                //   << " > availableMassFlow=" << availableMassFlow << ", not enough power out of turbine" << std::endl;
+        std::cout << methodName << "highToLowPressureTurbineMassFlow=" << highToLowPressureTurbineMassFlow
+                  << " > availableMassFlow=" << availableMassFlow << ", not enough power out of turbine" << std::endl;
         restarter.restartIfNotEnoughSteam(turbine, availableMassFlow, boiler);
     }
 }
