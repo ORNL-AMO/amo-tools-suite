@@ -22,7 +22,8 @@
   },
   "scripts": {
     "test": "tap debug tests/js/*.js",
-    "at": "tap debug tests/at/js/*.js"
+    "at": "tap debug tests/at/js/*.js",
+    "test-steam": "tap debug tests/js/steamModelerTest.js"
   },
   "repository": {
     "type": "git",

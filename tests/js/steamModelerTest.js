@@ -32,106 +32,92 @@ test('steamModeler', function (t) {
 
 function makeSteamModelerInput() {
     var boilerInput = {
-        fuelType: 1,
-        fuel: 1,
-        combustionEfficiency: 85,
-        blowdownRate: 2,
-        blowdownFlashed: true,
-        preheatMakeupWater: true,
-        steamTemperature: 514.2,
-        deaeratorVentRate: 0.1,
-        deaeratorPressure: 0.204747,
-        approachTemperature: 10,
+        "fuelType": 1,
+        "fuel": 1,
+        "combustionEfficiency": 85,
+        "blowdownRate": 2,
+        "blowdownFlashed": false,
+        "preheatMakeupWater": false,
+        "steamTemperature": 582.5388888888889,
+        "deaeratorVentRate": 0.1,
+        "deaeratorPressure": 0.20474679297336734,
+        "approachTemperature": null
     };
 
     var header1 = {
-        pressure: 1.136,
-        processSteamUsage: 22680,
-        condensationRecoveryRate: 50,
-        heatLoss: 0.1,
-
-        flashCondensateIntoHeader: true,
-        desuperheatSteamIntoNextHighest: true,
-        desuperheatSteamTemperature: 1,
-
-        condensateReturnTemperature: 338.7,
-        flashCondensateReturn: true,
+        "pressure": 4.238181393236699,
+        "processSteamUsage": 22679.6,
+        "condensationRecoveryRate": 50,
+        "heatLoss": 0.1,
+        "condensateReturnTemperature": 338.7055555555555,
+        "flashCondensateReturn": false
     };
     var header2 = {
-        pressure: 2,
-        processSteamUsage: 2,
-        condensationRecoveryRate: 2,
-        heatLoss: 2,
-
-        flashCondensateIntoHeader: true,
-        desuperheatSteamIntoNextHighest: true,
-        desuperheatSteamTemperature: 338.7,
-
-        condensateReturnTemperature: null,
-        flashCondensateReturn: null,
+        "pressure": 1.135539393034136,
+        "processSteamUsage": 39158.07115303262,
+        "condensationRecoveryRate": 50,
+        "heatLoss": 0.1,
+        "flashCondensateIntoHeader": false,
+        "desuperheatSteamIntoNextHighest": false,
+        "desuperheatSteamTemperature": 255.3722222222222,
+        "useBaselineProcessSteamUsage": true
     };
     var header3 = {
-        pressure: 3,
-        processSteamUsage: 3,
-        condensationRecoveryRate: 3,
-        heatLoss: 3,
-
-        flashCondensateIntoHeader: true,
-        desuperheatSteamIntoNextHighest: true,
-        desuperheatSteamTemperature: 338.7,
-
-        condensateReturnTemperature: null,
-        flashCondensateReturn: null,
+        "pressure": 0.23922059297561804,
+        "processSteamUsage": 0,
+        "condensationRecoveryRate": 50,
+        "heatLoss": 0.1,
+        "flashCondensateIntoHeader": false,
+        "desuperheatSteamIntoNextHighest": false,
+        "desuperheatSteamTemperature": 255.3722222222222,
+        "useBaselineProcessSteamUsage": true
     };
     var headerInput = {
         highPressureHeader: header1,
-        mediumPressureHeader: null,
-        lowPressureHeader: null,
+        mediumPressureHeader: header2,
+        lowPressureHeader: header3,
     };
 
     var operationsInput = {
-        sitePowerImport: 18000000,
-        makeUpWaterTemperature: 283.15,
-        operatingHoursPerYear: 8000,
-        fuelCosts: 0.000005478,
-        electricityCosts: 1.39E-05,
-        makeUpWaterCosts: 0.66,
+        "sitePowerImport": 17999996.900135573,
+        "makeUpWaterTemperature": 283.15,
+        "operatingHoursPerYear": 8000,
+        "fuelCosts": 0.0000054783614202035905,
+        "electricityCosts": 0.00001388889128076,
+        "makeUpWaterCosts": 0.6604301289062501
     };
 
     var condensingTurbine = {
-        isentropicEfficiency: 1,
-        generationEfficiency: 1,
-        condenserPressure: 1,
-        operationType: 1,
-        operationValue: 1,
-        useTurbine: true,
+        "isentropicEfficiency": null,
+        "generationEfficiency": null,
+        "condenserPressure": null,
+        "operationType": null,
+        "operationValue": null,
+        "useTurbine": false
     };
     var highToLowTurbine = {
-        isentropicEfficiency: 2,
-        generationEfficiency: 2,
-        condenserPressure: 2,
-        operationType: 2,
-        operationValue1: 2,
-        operationValue2: 2,
-        useTurbine: true,
+        "isentropicEfficiency": null,
+        "generationEfficiency": null,
+        "operationType": null,
+        "operationValue1": null,
+        "operationValue2": null,
+        "useTurbine": false
     };
     var highToMediumTurbine = {
-        isentropicEfficiency: 3,
-        generationEfficiency: 3,
-        condenserPressure: 3,
-        operationType: 3,
-        operationValue1: 3,
-        operationValue2: 3,
-        useTurbine: true,
+        "isentropicEfficiency": null,
+        "generationEfficiency": null,
+        "operationType": null,
+        "operationValue1": null,
+        "operationValue2": null,
+        "useTurbine": false
     };
     var mediumToLowTurbine = {
-        isentropicEfficiency: 4,
-        generationEfficiency: 4,
-        condenserPressure: 4,
-        operationType: 4,
-        operationValue1: 4,
-        operationValue2: 4,
-        useTurbine: true,
+        "isentropicEfficiency": null,
+        "generationEfficiency": null,
+        "operationType": null,
+        "operationValue1": null,
+        "operationValue2": null,
+        "useTurbine": false
     };
     var turbineInput = {
         condensingTurbine: condensingTurbine,

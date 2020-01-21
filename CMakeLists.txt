@@ -57,49 +57,6 @@ endif (WIN32)
 #file(MAKE_DIRECTORY ${CMAKE_DATABASE_OUTPUT_DIRECTORY})
 
 set(SOURCE_FILES
-        src/results/Results.cpp
-        src/calculator/util/AnnualCost.cpp
-        src/calculator/util/AnnualEnergy.cpp
-        src/calculator/util/CurveFitVal.cpp
-        src/calculator/motor/EstimateFLA.cpp
-        src/calculator/motor/MotorCurrent.cpp
-        src/calculator/motor/MotorEfficiency.cpp
-        src/calculator/motor/MotorPower.cpp
-        src/calculator/motor/MotorPowerFactor.cpp
-        src/calculator/motor/MotorShaftPower.cpp
-        src/calculator/pump/OptimalDeviationFactor.cpp
-        src/calculator/motor/OptimalMotorPower.cpp
-        src/calculator/motor/OptimalMotorShaftPower.cpp
-        src/calculator/motor/OptimalMotorSize.cpp
-        src/calculator/pump/OptimalPrePumpEff.cpp
-        src/calculator/pump/OptimalPumpEfficiency.cpp
-        src/calculator/pump/OptimalPumpShaftPower.cpp
-        src/calculator/pump/OptimalSpecificSpeed.cpp
-        src/calculator/pump/OptimalSpecificSpeedCorrection.cpp
-        src/calculator/motor/Poles.cpp
-        src/calculator/pump/MoverEfficiency.cpp
-        src/calculator/pump/PumpShaftPower.cpp
-        src/calculator/losses/Atmosphere.cpp
-        src/calculator/losses/FixtureLosses.cpp
-        src/calculator/losses/GasCoolingLosses.cpp
-        src/calculator/losses/WaterCoolingLosses.cpp
-        src/calculator/losses/LiquidCoolingLosses.cpp
-        src/calculator/losses/LeakageLosses.cpp
-        src/calculator/losses/WallLosses.cpp
-        src/calculator/losses/OpeningLosses.cpp
-        src/sqlite/SQLite.cpp
-        src/calculator/losses/GasFlueGasMaterial.cpp
-        src/calculator/pump/HeadTool.cpp
-        src/calculator/losses/EnergyInputEAF.cpp
-        src/calculator/losses/SlagOtherMaterialLosses.cpp
-        src/calculator/losses/SolidLiquidFlueGasMaterial.cpp
-        src/calculator/losses/AuxiliaryPower.cpp
-        src/calculator/losses/ExhaustGasEAF.cpp
-        src/calculator/furnace/EnergyEquivalency.cpp
-        src/calculator/furnace/EfficiencyImprovement.cpp
-        src/calculator/furnace/O2Enrichment.cpp
-        src/calculator/furnace/FlowCalculationsEnergyUse.cpp
-        src/calculator/furnace/HumidityRatio.cpp
         src/ssmt/SaturatedProperties.cpp
         src/ssmt/SteamProperties.cpp
         src/ssmt/SteamSystemModelerTool.cpp
@@ -172,88 +129,9 @@ set(SOURCE_FILES
         src/ssmt/service/water_and_condensate/MakeupWaterCalculator.cpp
         src/ssmt/service/water_and_condensate/MakeupWaterMassFlowCalculator.cpp
         src/ssmt/service/water_and_condensate/MakeupWaterVolumeFlowCalculator.cpp
-        src/ssmt/service/water_and_condensate/ReturnCondensateCalculator.cpp
-        src/fans/FanCurve.cpp
-        src/calculator/util/CompressedAir.cpp
-        src/calculator/util/CHP.cpp
-        src/calculator/util/ElectricityReduction.cpp
-        src/calculator/util/NaturalGasReduction.cpp
-        src/calculator/util/CompressedAirReduction.cpp
-        src/calculator/util/CompressedAirPressureReduction.cpp
-        src/calculator/util/WaterReduction.cpp
-        src/calculator/util/insulation/pipes/InsulatedPipeInput.cpp
-        src/calculator/util/insulation/pipes/InsulatedPipeCalculator.cpp
-        src/calculator/util/insulation/pipes/InsulatedPipeOutput.cpp
-        src/calculator/util/insulation/tanks/InsulatedTankInput.cpp
-        src/calculator/util/insulation/tanks/InsulatedTankCalculator.cpp
-        src/calculator/util/insulation/tanks/InsulatedTankOutput.cpp
-        src/calculator/util/insulation/objects/AirProperties.cpp
-        src/calculator/util/insulation/services/ConvectiveHeatTransferCoefficient.cpp
-        src/calculator/util/insulation/services/NusseltNumber.cpp
-        src/calculator/util/insulation/services/RadiativeHeatTransferCoefficient.cpp
-        src/calculator/util/insulation/services/RayleighNumber.cpp
-        src/calculator/util/insulation/services/ReynoldsNumber.cpp
-        src/calculator/util/insulation/services/ThermalResistance.cpp
-        src/calculator/util/SteamReduction.cpp)
+        src/ssmt/service/water_and_condensate/ReturnCondensateCalculator.cpp)
 
 set(INCLUDE_FILES
-        include/results/Results.h
-        include/calculator/util/AnnualCost.h
-        include/calculator/util/AnnualEnergy.h
-        include/calculator/util/CurveFitVal.h
-        include/calculator/motor/EstimateFLA.h
-        include/calculator/pump/FluidPower.h
-        include/calculator/motor/MotorCurrent.h
-        include/calculator/motor/MotorEfficiency.h
-        include/calculator/motor/MotorPower.h
-        include/calculator/motor/MotorPowerFactor.h
-        include/calculator/motor/MotorShaftPower.h
-        include/calculator/pump/OptimalDeviationFactor.h
-        include/calculator/motor/OptimalMotorPower.h
-        include/calculator/motor/OptimalMotorShaftPower.h
-        include/calculator/motor/OptimalMotorSize.h
-        include/calculator/pump/OptimalPrePumpEff.h
-        include/calculator/pump/OptimalPumpEfficiency.h
-        include/calculator/pump/OptimalPumpShaftPower.h
-        include/calculator/pump/OptimalSpecificSpeed.h
-        include/calculator/pump/OptimalSpecificSpeedCorrection.h
-        include/calculator/motor/Poles.h
-        include/calculator/pump/MoverEfficiency.h
-        include/calculator/pump/PumpShaftPower.h
-        include/calculator/losses/LoadChargeMaterial.h
-        include/calculator/losses/SolidLoadChargeMaterial.h
-        include/calculator/losses/LiquidLoadChargeMaterial.h
-        include/calculator/losses/GasLoadChargeMaterial.h
-        include/calculator/losses/Atmosphere.h
-        include/calculator/losses/GasCoolingLosses.h
-        include/calculator/losses/FixtureLosses.h
-        include/calculator/losses/WaterCoolingLosses.h
-        include/calculator/losses/LiquidCoolingLosses.h
-        include/calculator/losses/LeakageLosses.h
-        include/calculator/losses/WallLosses.h
-        include/calculator/losses/OpeningLosses.h
-        include/sqlite/SQLite.h
-        include/calculator/losses/GasFlueGasMaterial.h
-        include/calculator/pump/HeadTool.h
-        include/calculator/pump/HeadTool.h
-        include/sqlite/SolidLoadChargeMaterialData.h
-        include/sqlite/GasLoadChargeMaterialData.h
-        include/sqlite/LiquidLoadChargeMaterialData.h
-        include/sqlite/SolidLiquidFlueGasMaterialData.h
-        include/sqlite/GasFlueGasMaterialData.h
-        include/calculator/losses/EnergyInputEAF.h
-        include/calculator/losses/SlagOtherMaterialLosses.h
-        include/calculator/losses/SolidLiquidFlueGasMaterial.h
-        include/calculator/losses/AuxiliaryPower.h
-        include/calculator/losses/ExhaustGasEAF.h
-        include/calculator/furnace/EnergyEquivalency.h
-        include/calculator/furnace/EfficiencyImprovement.h
-        include/calculator/furnace/O2Enrichment.h
-        include/calculator/furnace/FlowCalculationsEnergyUse.h
-        include/calculator/losses/EnergyInputExhaustGasLosses.h
-        include/sqlite/AtmosphereSpecificHeatData.h
-        include/sqlite/WallLossesSurfaceData.h
-        include/calculator/furnace/HumidityRatio.h
         include/ssmt/SaturatedProperties.h
         include/ssmt/SteamProperties.h
         include/ssmt/SteamSystemModelerTool.h
@@ -340,37 +218,6 @@ set(INCLUDE_FILES
         include/ssmt/service/water_and_condensate/MakeupWaterMassFlowCalculator.h
         include/ssmt/service/water-and-condensate/MakeupWaterVolumeFlowCalculator.h
         include/ssmt/service/water_and_condensate/ReturnCondensateCalculator.h
-        include/fans/Fan203.h
-        include/fans/FanShaftPower.h
-        include/fans/Planar.h
-        include/ssmt/Turbine.h
-        include/calculator/util/CHP.h
-        include/fans/FanCurve.h
-        include/calculator/util/CompressedAir.h
-        include/calculator/util/ElectricityReduction.h
-        include/calculator/util/NaturalGasReduction.h
-        include/calculator/util/CompressedAirReduction.h
-        include/calculator/util/CompressedAirPressureReduction.h
-        include/calculator/util/WaterReduction.h
-        include/calculator/util/insulation/pipes/InsulatedPipeInput.h
-        include/calculator/util/insulation/pipes/InsulatedPipeCalculator.h
-        include/calculator/util/insulation/pipes/InsulatedPipeOutput.h
-        include/calculator/util/insulation/tanks/InsulatedTankInput.h
-        include/calculator/util/insulation/tanks/InsulatedTankCalculator.h
-        include/calculator/util/insulation/tanks/InsulatedTankOutput.h
-        include/calculator/util/insulation/objects/AirProperties.h
-        include/calculator/util/insulation/services/ConvectiveHeatTransferCoefficient.h
-        include/calculator/util/insulation/services/NusseltNumber.h
-        include/calculator/util/insulation/services/RadiativeHeatTransferCoefficient.h
-        include/calculator/util/insulation/services/RayleighNumber.h
-        include/calculator/util/insulation/services/ReynoldsNumber.h
-        include/calculator/util/insulation/services/ThermalResistance.h
-        include/calculator/util/SteamReduction.h
-        include/calculator/motor/MotorData.h
-        include/fans/CompressibilityFactor.h
-        include/results/InputData.h
-        include/fans/FanEnergyIndex.h
-        include/fans/OptimalFanEfficiency.h
         include/ssmt/HeatExchanger.h
         )
 
