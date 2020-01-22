@@ -63,8 +63,9 @@ double PrvCalculator::calcPrvMassFlow(const SteamSystemModelerTool::FluidPropert
     if (condensingTurbineInput.isUseTurbine()) {
         prvMassFlow -= getTurbineMassFlow(condensingTurbine, "condensingTurbine");
     }
-
+    std::cout << "MASS FLOWWW! " << prvMassFlow << std::endl;
     prvMassFlow = std::fmax(prvMassFlow, 0);
+    std::cout << "MASS FLOWWW!  2!!  " << prvMassFlow << std::endl;
 
     return prvMassFlow;
 }

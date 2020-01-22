@@ -49,7 +49,7 @@ Turbine::TurbineProperty TurbineCalculator::determineTurbineProperty(const Press
             break;
         default:
             std::string msg = "TurbineCalculator::determineTurbineProperty: operationType enum not handled=";
-            // std::cout << msg << operationType << std::endl;
+            std::cout << msg << operationType << std::endl;
             throw std::invalid_argument(msg);
     }
 
@@ -107,7 +107,7 @@ double TurbineCalculator::adjustMassFlowOrPowerOut(const double massFlowOrPowerO
             break;
         default:
             std::string msg = "TurbineCalculator::adjustMassFlowOrPowerOut: operationType enum not handled";
-           // std::cout << msg << std::endl;
+           std::cout << msg << std::endl;
             throw std::invalid_argument(msg);
     }
 

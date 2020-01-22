@@ -16,14 +16,14 @@ ReturnCondensateCalculator::flash(const HeaderWithHighestPressure &highPressureH
     SteamSystemModelerTool::FluidProperties returnCondensateFlashed = returnCondensate;
 
     if (highPressureHeaderInput.isFlashCondensate()) {
-        // std::cout << methodName
-        //           << "highPressureHeaderInput isFlashCondensate, calculating condensateFlashTank & returnCondensate"
-        //           << std::endl;
+        std::cout << methodName
+                  << "highPressureHeaderInput isFlashCondensate, calculating condensateFlashTank & returnCondensate"
+                  << std::endl;
         const FlashTank &condensateFlashTank = flashTankFactory.make(boilerInput, returnCondensate);
         condensateFlashTankPtr = std::make_shared<FlashTank>(condensateFlashTank);
         returnCondensateFlashed = condensateFlashTank.getOutletLiquidSaturatedProperties();
     } else {
-        //std::cout << methodName << "highPressureHeaderInput not isFlashCondensate, skipping" << std::endl;
+        std::cout << methodName << "highPressureHeaderInput not isFlashCondensate, skipping" << std::endl;
     }
 
     return {condensateFlashTankPtr, returnCondensateFlashed};

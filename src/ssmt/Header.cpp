@@ -2,32 +2,40 @@
 
 Inlet::Inlet(const double pressure, const SteamProperties::ThermodynamicQuantity quantityType,
              const double quantityValue, const double massFlow)
-        : pressure(pressure), quantityValue(quantityValue), massFlow(massFlow),
-          quantityType(quantityType) {
+    : pressure(pressure), quantityValue(quantityValue), massFlow(massFlow),
+      quantityType(quantityType)
+{
     calculate();
 }
 
 Header::Header(const double headerPressure, std::vector<Inlet> &inletVec)
-        : headerPressure(headerPressure), inlets(std::move(inletVec)) {
+    : headerPressure(headerPressure), inlets(std::move(inletVec))
+{
     calculate();
 }
 
-void Header::calculate() {
+void Header::calculate()
+{
     inletEnergyFlow = 0.0, inletMassFlow = 0.0;
 
-    for (auto const &inlet: inlets) {
+    for (auto const &inlet : inlets)
+    {
         inletEnergyFlow += inlet.getInletEnergyFlow();
         inletMassFlow += inlet.getMassFlow();
     }
 
     specificEnthalpy = (inletMassFlow == 0.0) ? 0.0 : inletEnergyFlow / inletMassFlow;
+    std::cout << "SPECIFIC ENTHALPY!!!!!!!!!" << specificEnthalpy << std::endl;
     headerProperties = SteamProperties(headerPressure, SteamProperties::ThermodynamicQuantity::ENTHALPY,
-                                       specificEnthalpy).calculate();
+                                       specificEnthalpy)
+                           .calculate();
+    std::cout << "PROPERTIES ENTHALPY!!!!!!!!!" << headerProperties.specificEnthalpy << std::endl;
 }
 
-std::ostream &operator<<(std::ostream &stream, const Inlet &inlet) {
+std::ostream &operator<<(std::ostream &stream, const Inlet &inlet)
+{
     stream << "Inlet["
-           << "pressure=" << inlet.pressure << ", quantityType=" << static_cast< int >(inlet.quantityType)
+           << "pressure=" << inlet.pressure << ", quantityType=" << static_cast<int>(inlet.quantityType)
            << ", quantityValue=" << inlet.quantityValue << ", massFlow=" << inlet.massFlow
            << ", inletEnergyFlow=" << inlet.inletEnergyFlow
            << ", inletProperties=" << inlet.inletProperties << "]";
@@ -35,7 +43,8 @@ std::ostream &operator<<(std::ostream &stream, const Inlet &inlet) {
     return stream;
 }
 
-std::ostream &operator<<(std::ostream &stream, const Header &header) {
+std::ostream &operator<<(std::ostream &stream, const Header &header)
+{
     stream << "Header["
            << "headerPressure=" << header.getHeaderPressure()
            << ", specificEnthalpy=" << header.getSpecificEnthalpy()
@@ -46,38 +55,46 @@ std::ostream &operator<<(std::ostream &stream, const Header &header) {
     return stream;
 }
 
-void Header::setHeaderPressure(const double headerPressure) {
+void Header::setHeaderPressure(const double headerPressure)
+{
     this->headerPressure = headerPressure;
     headerProperties = SteamProperties(this->headerPressure, SteamProperties::ThermodynamicQuantity::ENTHALPY,
-                                       specificEnthalpy).calculate();
+                                       specificEnthalpy)
+                           .calculate();
 }
 
-void Header::setInlets(std::vector<Inlet> &inlets) {
+void Header::setInlets(std::vector<Inlet> &inlets)
+{
     this->inlets = std::move(inlets);
     calculate();
 }
 
-void Inlet::calculate() {
+void Inlet::calculate()
+{
     inletProperties = SteamProperties(pressure, quantityType, quantityValue).calculate();
     inletEnergyFlow = inletProperties.specificEnthalpy * massFlow;
 }
 
-void Inlet::setPressure(const double pressure) {
+void Inlet::setPressure(const double pressure)
+{
     this->pressure = pressure;
     calculate();
 }
 
-void Inlet::setQuantityValue(const double quantityValue) {
+void Inlet::setQuantityValue(const double quantityValue)
+{
     this->quantityValue = quantityValue;
     calculate();
 }
 
-void Inlet::setMassFlow(const double massFlow) {
+void Inlet::setMassFlow(const double massFlow)
+{
     this->massFlow = massFlow;
     inletEnergyFlow = inletProperties.specificEnthalpy * massFlow;
 }
 
-void Inlet::setQuantityType(const SteamProperties::ThermodynamicQuantity quantityType) {
+void Inlet::setQuantityType(const SteamProperties::ThermodynamicQuantity quantityType)
+{
     this->quantityType = quantityType;
     calculate();
 }
