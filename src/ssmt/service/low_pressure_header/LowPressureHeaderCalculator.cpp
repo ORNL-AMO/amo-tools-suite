@@ -21,10 +21,5 @@ LowPressureHeaderCalculator::calc(const int headerCountInput,
                                lowPressureFlashedSteamIntoHeaderCalculatorDomain,
                                mediumPressureHeaderCalculationsDomain);
     std::cout << methodName << "lowPressureHeader=" << lowPressureHeader << std::endl;
-
-    //check low pressure head has enough steam
-    //low pressure steam usage + dearator feedwater - medium pressure condensate - blowdown condensate
-
-
     return fluidPropertiesFactory.make(lowPressureHeader);
 }
