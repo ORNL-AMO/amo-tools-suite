@@ -35,8 +35,7 @@ SteamBalanceCheckerService::check(const std::string &itemName, const PressureTur
             throw ReducedSteamException("Reduced steam from highToLowPressureTurbine for " + itemName,
                                         highToLowPressureTurbineUpdated, highToLowPressureTurbineIdealUpdated);
         } else {
-            restarter.restartIfNotEnoughSteam(remainingAdditionalSteamNeeded, boiler);
-            return steamReducerOutput;
+            return {0, highToLowPressureTurbine, highToLowPressureTurbineIdeal};
         }
     } else {
         return {0, highToLowPressureTurbine, highToLowPressureTurbineIdeal};

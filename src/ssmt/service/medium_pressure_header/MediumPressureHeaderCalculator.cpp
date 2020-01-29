@@ -17,6 +17,7 @@ MediumPressureHeaderCalculator::calc(const Boiler &boiler, const PressureTurbine
     std::shared_ptr<Turbine> highToLowPressureTurbineIdealUpdated = highToLowPressureTurbineIdeal;
 
     std::cout << methodName << "calculating mediumPressureHeaderOutput" << std::endl;
+
     //3B1 & 3B2. Calculate medium pressure header
     const Header mediumPressureHeader =
             headerFactory.make(mediumPressureHeaderInput, highToMediumPressurePrv, highToMediumTurbineInput,

@@ -25,11 +25,9 @@ void Header::calculate()
     }
 
     specificEnthalpy = (inletMassFlow == 0.0) ? 0.0 : inletEnergyFlow / inletMassFlow;
-    std::cout << "SPECIFIC ENTHALPY!!!!!!!!!" << specificEnthalpy << std::endl;
     headerProperties = SteamProperties(headerPressure, SteamProperties::ThermodynamicQuantity::ENTHALPY,
                                        specificEnthalpy)
                            .calculate();
-    std::cout << "PROPERTIES ENTHALPY!!!!!!!!!" << headerProperties.specificEnthalpy << std::endl;
 }
 
 std::ostream &operator<<(std::ostream &stream, const Inlet &inlet)

@@ -31,13 +31,11 @@ PrvWithoutDesuperheating PrvCalculator::calcHighToMediumPrvWithoutDesuperheating
         const std::shared_ptr<Turbine> &condensingTurbine,
         const std::shared_ptr<HeaderNotHighestPressure> &mediumPressureHeaderInput) const {
 
-    std::cout << "CALCULATE" << std::endl;
     const double prvMassFlow =
             calcPrvMassFlow(highPressureHeaderOutput, highPressureHeaderInput, highToLowTurbineInput,
                             highToMediumTurbineInput, condensingTurbineInput, highToLowPressureTurbine,
                             highToMediumPressureTurbine, condensingTurbine);
 
-    std::cout << "MASSFLOW CALCULATED!" << std::endl;
     return prvWithoutDesuperheatingFactory.make(highPressureHeaderOutput, prvMassFlow, mediumPressureHeaderInput);
 }
 
@@ -51,7 +49,6 @@ double PrvCalculator::calcPrvMassFlow(const SteamSystemModelerTool::FluidPropert
                                       const std::shared_ptr<Turbine> &highToMediumPressureTurbine,
                                       const std::shared_ptr<Turbine> &condensingTurbine) const {
 
-    std::cout << "CALC PRV MASS FLOW!" << std::endl;
     double prvMassFlow = highPressureHeader.massFlow - highPressureHeaderInput.getProcessSteamUsage();
 
     if (highToLowTurbineInput.isUseTurbine()) {
@@ -63,10 +60,7 @@ double PrvCalculator::calcPrvMassFlow(const SteamSystemModelerTool::FluidPropert
     if (condensingTurbineInput.isUseTurbine()) {
         prvMassFlow -= getTurbineMassFlow(condensingTurbine, "condensingTurbine");
     }
-    std::cout << "MASS FLOWWW! " << prvMassFlow << std::endl;
     prvMassFlow = std::fmax(prvMassFlow, 0);
-    std::cout << "MASS FLOWWW!  2!!  " << prvMassFlow << std::endl;
-
     return prvMassFlow;
 }
 
