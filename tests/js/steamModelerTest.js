@@ -54,7 +54,7 @@ function makeSteamModelerInput() {
     };
     var header2 = {
         "pressure": 1.135539393034136,
-        "processSteamUsage": 39158.07115303262,
+        "processSteamUsage": 0,
         "condensationRecoveryRate": 50,
         "heatLoss": 0.1,
         "flashCondensateIntoHeader": false,

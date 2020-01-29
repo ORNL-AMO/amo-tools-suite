@@ -70,12 +70,6 @@ SteamModelCalculator::calc(const bool isBaselineCalc, const double baselinePower
                                    makeupWaterAndCondensateHeaderCalculationsDomain);
         std::cout << methodName << "deaerator=" << deaerator << std::endl;
 
-        // if (headerCountInput > 2)
-        // {
-                const double lowPressureSteamNeed = lowPressureHeaderInput->getProcessSteamUsage() + deaerator.getFeedwaterMassFlow() - lowPressureHeaderCalculationsDomain->lowPressureFlashedSteamIntoHeaderCalculatorDomain.mediumPressureCondensateFlashTank->getOutletGasSaturatedProperties().massFlow - blowdownFlashTank->getOutletGasSaturatedProperties().massFlow;
-                std::cout << "LOW PRESSURE STEAM NEED!@#!@#: " << lowPressureSteamNeed << std::endl;
-        // }
-
         std::cout << methodName << "running powerBalanceChecker" << std::endl;
         const double deaeratorInletSteamMassFlow = deaerator.getInletSteamProperties().massFlow;
         const PowerBalanceCheckerCalculationsDomain &powerBalanceCheckerCalculationsDomain =
