@@ -525,17 +525,28 @@ private:
 		for (auto i = 0; i < 50; i++)
 		{
 			plane.gasDensity = calculatedDensity;
+			std::cout << "plane.gasDensity: " << plane.gasDensity << std::endl;
 			plane.gasVolumeFlowRate = mTotal / plane.gasDensity;
+			std::cout << "plane.gasVolumeFlowRate: " << plane.gasVolumeFlowRate << std::endl;
 			plane.gasVelocity = plane.gasVolumeFlowRate / plane.area;
+			std::cout << "plane.gasVelocity: " << plane.gasVelocity << std::endl;
 			plane.gasVelocityPressure = plane.gasDensity * std::pow(plane.gasVelocity / 1096, 2);
+			std::cout << "plane.gasVelocityPressure: " << plane.gasVelocityPressure << std::endl;
+			std::cout << "plane.gasTotalPressure: " << plane.gasTotalPressure << std::endl;
 			double fanInletOrOutletStaticPressure = plane.gasTotalPressure - plane.gasVelocityPressure;
+			std::cout << "fanInletOrOutletStaticPressure: " << fanInletOrOutletStaticPressure << std::endl;
 			double fanInletOrOutletGasDensity = calcDensity(plane, fanInletOrOutletStaticPressure);
+			std::cout << "fanInletOrOutletGasDensity: " << fanInletOrOutletGasDensity << std::endl;
 
 			calculatedDensity = fanInletOrOutletGasDensity;
+			double testVal = fabs(fanInletOrOutletGasDensity - plane.gasDensity);
+			std::cout << "while: " << testVal << std::endl;
 			if (fabs(fanInletOrOutletGasDensity - plane.gasDensity) < 0.0001)
 			{
 				plane.gasDensity = fanInletOrOutletGasDensity;
+				std::cout << "plane.gasDensity: " << plane.gasDensity << std::endl;
 				plane.staticPressure = fanInletOrOutletStaticPressure;
+				std::cout << "plane.staticPressure : " << plane.staticPressure << std::endl;
 				return;
 			}
 		}
