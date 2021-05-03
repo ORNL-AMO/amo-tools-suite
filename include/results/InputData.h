@@ -83,6 +83,7 @@ namespace Fan {
 		 * @param inletPressure
 		 * @param outletPressure
 		 * @param compressibilityFactor
+		 * @param velocityPressure
 		 */
 		FieldDataModified(const double measuredVoltage, const double measuredAmps, const double flowRate, const double inletPressure,
 		                            const double outletPressure, const double compressibilityFactor, const double velocityPressure)
@@ -104,6 +105,7 @@ namespace Fan {
 		 * @param outletPressure
 		 * @param compressibilityFactor
 		 * @param loadEstimationMethod
+		 * @param velocityPressure
 		 */
 		FieldDataBaseline(const double measuredPower, const double measuredVoltage, const double measuredAmps,
 		                  const double flowRate, const double inletPressure, const double outletPressure,

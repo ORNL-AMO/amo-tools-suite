@@ -107,7 +107,17 @@ EMSCRIPTEN_BINDINGS(base_gas_density)
         .constructor<double, double, double, double, BaseGasDensity::GasType>()
         .constructor<double, double, double, double, BaseGasDensity::GasType, BaseGasDensity::InputType, double>()
         .constructor<double, double, double, double, BaseGasDensity::GasType, BaseGasDensity::InputType, double, double>()
-        .function("getGasDensity", &BaseGasDensity::getGasDensity);
+        .function("getGasDensity", &BaseGasDensity::getGasDensity)
+        .function("getAbsolutePressureIn", &BaseGasDensity::getAbsolutePressureIn)
+        .function("getSaturatedHumidityRatio", &BaseGasDensity::getSaturatedHumidityRatio)
+        .function("getDegreeOfSaturation", &BaseGasDensity::getDegreeOfSaturation)
+        .function("getHumidityRatio", &BaseGasDensity::getHumidityRatio)
+        .function("getSpecificVolume", &BaseGasDensity::getSpecificVolume)
+        .function("getEnthalpy", &BaseGasDensity::getEnthalpy)
+        .function("getDewPoint", &BaseGasDensity::getDewPoint)
+        .function("getRelativeHumidity", &BaseGasDensity::getRelativeHumidity)
+        .function("getSaturationPressure", &BaseGasDensity::getSaturationPressure)
+        .function("getWetBulbTemp", &BaseGasDensity::getWetBulbTemp);
 }
 
 //getVelocityPressureData
